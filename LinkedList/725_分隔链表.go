@@ -1,3 +1,13 @@
+/*
+-------------------------------------
+# @Time    : 2021/10/1 11:09:06
+# @Author  : Giyn
+# @Email   : giyn.jy@gmail.com
+# @File    : 725_分隔链表.go
+# @Software: GoLand
+-------------------------------------
+*/
+
 package splitListToParts
 
 type ListNode struct {
