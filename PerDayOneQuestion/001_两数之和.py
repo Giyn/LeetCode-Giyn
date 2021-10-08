@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 001_两数之和.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/two-sum/
 -------------------------------------
 """
 

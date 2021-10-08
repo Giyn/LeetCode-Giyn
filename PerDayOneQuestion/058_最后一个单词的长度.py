@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 517_超级洗衣机.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/length-of-last-word/
 -------------------------------------
 """
 

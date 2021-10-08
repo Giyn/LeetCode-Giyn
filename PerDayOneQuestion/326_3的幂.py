@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 326_3的幂.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/power-of-three/
 -------------------------------------
 """
 

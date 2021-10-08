@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 639_解码方法 II.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/decode-ways-ii/
 -------------------------------------
 """
 

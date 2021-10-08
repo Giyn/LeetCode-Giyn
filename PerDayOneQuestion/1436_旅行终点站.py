@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 1436_旅行终点站.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/destination-city/
 -------------------------------------
 """
 

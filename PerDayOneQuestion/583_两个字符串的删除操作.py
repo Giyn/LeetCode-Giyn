@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 583_两个字符串的删除操作.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/delete-operation-for-two-strings/
 -------------------------------------
 """
 

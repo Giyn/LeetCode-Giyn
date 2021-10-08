@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 367_有效的完全平方数.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/valid-perfect-square/
 -------------------------------------
 """
 

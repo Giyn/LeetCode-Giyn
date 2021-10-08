@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 035_搜索插入位置.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/search-insert-position/
 -------------------------------------
 """
 

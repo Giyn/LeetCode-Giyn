@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 430_扁平化多级双向链表.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/
 -------------------------------------
 """
 

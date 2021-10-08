@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 069_Sqrt(x).py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/sqrtx/
 -------------------------------------
 """
 

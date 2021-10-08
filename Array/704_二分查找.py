@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 704_二分查找.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/binary-search/
 -------------------------------------
 """
 

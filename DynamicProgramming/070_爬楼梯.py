@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 070_爬楼梯.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/climbing-stairs/
 -------------------------------------
 """
 

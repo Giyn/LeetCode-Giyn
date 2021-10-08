@@ -6,7 +6,6 @@
 # @Email   : giyn.jy@gmail.com
 # @File    : 223_矩形面积.py
 # @Software: PyCharm
-# @url     : https://leetcode-cn.com/problems/rectangle-area/
 -------------------------------------
 """
 
