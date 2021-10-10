@@ -39,7 +39,22 @@ class SummaryRanges:
             self.merge(val, val + 1)
 
     def getIntervals(self) -> List[List[int]]:
+        print(self.ans)
         return sorted([[i, i + j - 1] for i, j in self.ans.items()])
+
+
+if __name__ == '__main__':
+    summary_ranges = SummaryRanges()
+    summary_ranges.addNum(1)
+    print(summary_ranges.getIntervals())
+    summary_ranges.addNum(3)
+    print(summary_ranges.getIntervals())
+    summary_ranges.addNum(7)
+    print(summary_ranges.getIntervals())
+    summary_ranges.addNum(2)
+    print(summary_ranges.getIntervals())
+    summary_ranges.addNum(6)
+    print(summary_ranges.getIntervals())
 
 # Your SummaryRanges object will be instantiated and called as such:
 # obj = SummaryRanges()
