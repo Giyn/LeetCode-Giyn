@@ -17,21 +17,69 @@ func main() {
 	fmt.Println(majorityElement(nums))
 }
 
-func majorityElement(nums []int) []int {
-	n := len(nums)
-	m := make(map[int]int)
-	var ans []int
-	t := n / 3
+func majorityElement(nums []int) (res []int) {
+	cand1, count1 := nums[0], 0
+	cand2, count2 := nums[0], 0
 
 	for _, v := range nums {
-		m[v]++
+		if cand1 == v {
+			count1++
+			continue
+		}
+		if cand2 == v {
+			count2++
+			continue
+		}
+		if count1 == 0 {
+			cand1 = v
+			count1++
+			continue
+		}
+		if count2 == 0 {
+			cand2 = v
+			count2++
+			continue
+		}
+		count1--
+		count2--
 	}
 
-	for k, v := range m {
-		if v > t {
-			ans = append(ans, k)
+	count1 = 0
+	count2 = 0
+
+	for _, v := range nums {
+		if cand1 == v {
+			count1++
+		} else if cand2 == v {
+			count2++
 		}
 	}
 
-	return ans
+	if count1 > len(nums)/3 {
+		res = append(res, cand1)
+	}
+	if count2 > len(nums)/3 {
+		res = append(res, cand2)
+	}
+
+	return
 }
+
+//func majorityElement(nums []int) []int {
+//	n := len(nums)
+//	m := make(map[int]int)
+//	var ans []int
+//	t := n / 3
+//
+//	for _, v := range nums {
+//		m[v]++
+//	}
+//
+//	for k, v := range m {
+//		if v > t {
+//			ans = append(ans, k)
+//		}
+//	}
+//
+//	return ans
+//}
