@@ -25,6 +25,9 @@ func main() {
 }
 
 func spiralOrder(matrix [][]int) (ans []int) {
+	if len(matrix) == 0 {
+		return
+	}
 	m, n := len(matrix), len(matrix[0])
 	amount := m * n
 	cnt := 0
