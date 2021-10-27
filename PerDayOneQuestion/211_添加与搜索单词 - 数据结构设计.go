@@ -44,7 +44,7 @@ func (this *WordDictionary) AddWord(word string) {
 	tmp.isEnd = true
 }
 
-func dfs(node *WordDictionary, word string, index int) bool {
+func dfs211(node *WordDictionary, word string, index int) bool {
 	if node == nil {
 		return false
 	}
@@ -58,12 +58,12 @@ func dfs(node *WordDictionary, word string, index int) bool {
 	if ch != '.' {
 		ch -= 'a'
 		node = node.children[ch]
-		return dfs(node, word, index+1)
+		return dfs211(node, word, index+1)
 	} else {
 		res := false
 		for i := 0; i < 26; i++ {
 			if node.children[i] != nil {
-				res = res || dfs(node.children[i], word, index+1)
+				res = res || dfs211(node.children[i], word, index+1)
 			}
 		}
 		return res
@@ -71,7 +71,7 @@ func dfs(node *WordDictionary, word string, index int) bool {
 }
 
 func (this *WordDictionary) Search(word string) bool {
-	return dfs(this, word, 0)
+	return dfs211(this, word, 0)
 }
 
 /**
