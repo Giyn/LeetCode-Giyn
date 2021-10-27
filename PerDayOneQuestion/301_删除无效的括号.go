@@ -14,24 +14,24 @@ import "fmt"
 
 func main() {
 	s := "(a)())()"
+	//s := ")("
 	fmt.Println(removeInvalidParentheses(s))
 }
 
-func removeInvalidParentheses(s string) (ans []string) {
-	lremove, rremove := 0, 0
-	for _, ch := range s {
-		if ch == '(' {
-			lremove++
-		} else if ch == ')' {
-			if lremove == 0 {
-				rremove++
+func removeInvalidParentheses(str string) (ans []string) {
+	l, r := 0, 0
+	for _, v := range str {
+		if v == '(' {
+			l++
+		} else if v == ')' {
+			if l == 0 {
+				r++
 			} else {
-				lremove--
+				l--
 			}
 		}
 	}
-
-	dfs301(&ans, s, 0, 0, 0, lremove, rremove)
+	dfs301(str, 0, l, r, &ans)
 	return
 }
 
@@ -50,8 +50,8 @@ func isValid(str string) bool {
 	return cnt == 0
 }
 
-func dfs301(ans *[]string, str string, start, lcount, rcount, lremove, rremove int) {
-	if lremove == 0 && rremove == 0 {
+func dfs301(str string, start, l, r int, ans *[]string) {
+	if l == 0 && r == 0 {
 		if isValid(str) {
 			*ans = append(*ans, str)
 		}
@@ -59,25 +59,19 @@ func dfs301(ans *[]string, str string, start, lcount, rcount, lremove, rremove i
 	}
 
 	for i := start; i < len(str); i++ {
+		// 多种相同情况只需去除一次
 		if i != start && str[i] == str[i-1] {
 			continue
 		}
-		if lremove+rremove > len(str)-1 {
-			return
-		}
-		if lremove > 0 && str[i] == '(' {
-			dfs301(ans, str[:i]+str[i+1:], i, lcount, rcount, lremove-1, rremove)
-		}
-		if rremove > 0 && str[i] == ')' {
-			dfs301(ans, str[:i]+str[i+1:], i, lcount, rcount, lremove, rremove-1)
-		}
-		if str[i] == ')' {
-			lcount++
-		} else if str[i] == ')' {
-			rcount++
-		}
-		if rcount > lcount {
-			break
+
+		if str[i] == ')' && r > 0 {
+			cur := str
+			cur = cur[:i] + cur[i+1:]
+			dfs301(cur, i, l, r-1, ans)
+		} else if str[i] == '(' && l > 0 {
+			cur := str
+			cur = cur[:i] + cur[i+1:]
+			dfs301(cur, i, l-1, r, ans)
 		}
 	}
 }
