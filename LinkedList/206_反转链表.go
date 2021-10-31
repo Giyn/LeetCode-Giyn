@@ -12,17 +12,17 @@ package main
 
 import "fmt"
 
-type ListNode struct {
+type ListNode206 struct {
 	Val  int
-	Next *ListNode
+	Next *ListNode206
 }
 
 func main() {
-	listNode5 := ListNode{5, nil}
-	listNode4 := ListNode{4, &listNode5}
-	listNode3 := ListNode{3, &listNode4}
-	listNode2 := ListNode{2, &listNode3}
-	listNode1 := ListNode{1, &listNode2}
+	listNode5 := ListNode206{5, nil}
+	listNode4 := ListNode206{4, &listNode5}
+	listNode3 := ListNode206{3, &listNode4}
+	listNode2 := ListNode206{2, &listNode3}
+	listNode1 := ListNode206{1, &listNode2}
 
 	head := &listNode1
 	res := reverseList(head)
@@ -33,8 +33,8 @@ func main() {
 	}
 }
 
-func reverseList(head *ListNode) *ListNode {
-	var pre *ListNode
+func reverseList(head *ListNode206) *ListNode206 {
+	var pre *ListNode206
 	cur := head
 	for cur != nil {
 		tmp := cur.Next
