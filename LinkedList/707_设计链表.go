@@ -94,11 +94,12 @@ func (this *MyLinkedList) DeleteAtIndex(index int) {
 	}
 }
 
+// PrintLinkedList 用于调试
 func (this *MyLinkedList) PrintLinkedList() {
-	head := this.fake.Next
-	for head != nil {
-		fmt.Print(head.Val)
-		head = head.Next
+	cur := this.fake.Next
+	for cur != nil {
+		fmt.Print(cur.Val)
+		cur = cur.Next
 	}
 	fmt.Println()
 }
