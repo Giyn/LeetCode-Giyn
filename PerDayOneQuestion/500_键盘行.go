@@ -17,10 +17,10 @@ import (
 
 func main() {
 	words := []string{"Hello", "Alaska", "Dad", "Peace"}
-	fmt.Println(findWords(words))
+	fmt.Println(findWords500(words))
 }
 
-func findWords(words []string) (ans []string) {
+func findWords500(words []string) (ans []string) {
 	const rowIdx = "12210111011122000010020202"
 next:
 	for _, word := range words {
