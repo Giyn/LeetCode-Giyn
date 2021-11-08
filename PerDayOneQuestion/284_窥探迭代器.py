@@ -4,7 +4,7 @@
 # @Time    : 2021/10/8 15:38:50
 # @Author  : Giyn
 # @Email   : giyn.jy@gmail.com
-# @File    : 284_顶端迭代器.py
+# @File    : 284_窥探迭代器.py
 # @Software: PyCharm
 -------------------------------------
 """
