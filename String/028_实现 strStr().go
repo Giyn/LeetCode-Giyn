@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(strStr(haystack, needle))
 }
 
-func getNext(next []int, s string) {
+func getNext028(next []int, s string) {
 	j := 0
 	next[0] = j
 	for i := 1; i < len(s); i++ {
@@ -40,7 +40,7 @@ func strStr(haystack string, needle string) int {
 	}
 	j := 0
 	next := make([]int, n)
-	getNext(next, needle)
+	getNext028(next, needle)
 	for i := 0; i < len(haystack); i++ {
 		for j > 0 && haystack[i] != needle[j] {
 			j = next[j-1]
