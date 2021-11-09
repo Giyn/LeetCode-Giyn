@@ -40,6 +40,7 @@ func repeatedSubstringPattern(s string) bool {
 	}
 	next := make([]int, n)
 	getNext459(next, s)
+	// 数组长度减去最长相同前后缀的长度相当于是第一个周期的长度，也就是一个周期的长度，如果这个周期可以被整除，就说明整个数组就是这个周期的循环。
 	if next[n-1] != 0 && n%(n-next[n-1]) == 0 {
 		return true
 	}
