@@ -27,6 +27,5 @@ func findPoisonedDuration(timeSeries []int, duration int) (ans int) {
 			ans += diff
 		}
 	}
-	ans += duration
-	return
+	return ans + duration
 }
