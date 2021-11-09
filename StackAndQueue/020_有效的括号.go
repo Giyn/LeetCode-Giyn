@@ -20,9 +20,11 @@ func main() {
 func isValid(s string) bool {
 	stack := Constructor020()
 	for i := 0; i < len(s); i++ {
-		if (!stack.Empty() && stack.Top() == '(' && s[i] == ')') || (!stack.Empty() && stack.Top() == '{' && s[i] == '}') || (!stack.Empty() && stack.Top() == '[' && s[i] == ']') {
-			stack.Pop()
-			continue
+		if !stack.Empty() {
+			if (stack.Top() == '(' && s[i] == ')') || (stack.Top() == '{' && s[i] == '}') || (stack.Top() == '[' && s[i] == ']') {
+				stack.Pop()
+				continue
+			}
 		}
 		stack.Push(s[i])
 	}
