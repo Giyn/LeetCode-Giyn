@@ -18,7 +18,7 @@ type MyQueue struct {
 }
 
 func main() {
-	queue := Constructor()
+	queue := Constructor232()
 	queue.Push(1)
 	queue.Push(2)
 	fmt.Println(queue.Pop())
@@ -26,7 +26,7 @@ func main() {
 	fmt.Println(queue.Empty())
 }
 
-func Constructor() MyQueue {
+func Constructor232() MyQueue {
 	return MyQueue{
 		inStack:  make([]int, 0),
 		outStack: make([]int, 0),
