@@ -18,50 +18,15 @@ func main() {
 }
 
 func isValid(s string) bool {
-	stack := Constructor020()
+	var stack []byte
 	for i := 0; i < len(s); i++ {
-		if !stack.Empty() {
-			if (stack.Top() == '(' && s[i] == ')') || (stack.Top() == '{' && s[i] == '}') || (stack.Top() == '[' && s[i] == ']') {
-				stack.Pop()
+		if len(stack) != 0 {
+			if (stack[len(stack)-1] == '(' && s[i] == ')') || (stack[len(stack)-1] == '{' && s[i] == '}') || (stack[len(stack)-1] == '[' && s[i] == ']') {
+				stack = stack[:len(stack)-1]
 				continue
 			}
 		}
-		stack.Push(s[i])
+		stack = append(stack, s[i])
 	}
-	return stack.Empty()
-}
-
-type Stack020 struct {
-	queue []byte
-}
-
-func Constructor020() Stack020 {
-	return Stack020{
-		queue: make([]byte, 0),
-	}
-}
-
-func (this *Stack020) Push(x byte) {
-	this.queue = append(this.queue, x)
-}
-
-func (this *Stack020) Pop() byte {
-	for i := 0; i < len(this.queue)-1; i++ {
-		val := this.queue[0]
-		this.queue = this.queue[1:]
-		this.Push(val)
-	}
-	val := this.queue[0]
-	this.queue = this.queue[1:]
-	return val
-}
-
-func (this *Stack020) Top() byte {
-	val := this.Pop()
-	this.Push(val)
-	return val
-}
-
-func (this *Stack020) Empty() bool {
-	return len(this.queue) == 0
+	return len(stack) == 0
 }
