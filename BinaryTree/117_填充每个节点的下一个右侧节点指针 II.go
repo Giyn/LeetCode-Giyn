@@ -47,8 +47,6 @@ func connect2(root *Node117) *Node117 {
 
 	//if root == nil {
 	//	return nil
-	//} else {
-	//	root.Next = nil
 	//}
 	//queue := list.New()
 	//queue.PushBack(root)
