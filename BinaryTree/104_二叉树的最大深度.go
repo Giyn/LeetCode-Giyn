@@ -29,6 +29,7 @@ func maxDepth(root *TreeNode104) (ans int) {
 	queue.PushBack(root)
 	for queue.Len() > 0 {
 		length := queue.Len()
+		depth++
 		for i := 0; i < length; i++ {
 			node := queue.Remove(queue.Front()).(*TreeNode104)
 			if node.Left != nil {
@@ -38,7 +39,6 @@ func maxDepth(root *TreeNode104) (ans int) {
 				queue.PushBack(node.Right)
 			}
 		}
-		depth++
 	}
 	return depth
 }
