@@ -11,7 +11,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 )
 
@@ -20,31 +19,45 @@ func main() {
 	fmt.Println(maxDepth(root))
 }
 
-func maxDepth(root *TreeNode104) (ans int) {
+func maxDepth(root *TreeNode104) int {
+	// 递归
 	if root == nil {
 		return 0
 	}
-	depth := 0
-	queue := list.New()
-	queue.PushBack(root)
-	for queue.Len() > 0 {
-		length := queue.Len()
-		depth++
-		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode104)
-			if node.Left != nil {
-				queue.PushBack(node.Left)
-			}
-			if node.Right != nil {
-				queue.PushBack(node.Right)
-			}
-		}
-	}
-	return depth
+	return 1 + max104(maxDepth(root.Left), maxDepth(root.Right))
+
+	// 迭代
+	//if root == nil {
+	//	return 0
+	//}
+	//depth := 0
+	//queue := list.New()
+	//queue.PushBack(root)
+	//for queue.Len() > 0 {
+	//	length := queue.Len()
+	//	depth++
+	//	for i := 0; i < length; i++ {
+	//		node := queue.Remove(queue.Front()).(*TreeNode104)
+	//		if node.Left != nil {
+	//			queue.PushBack(node.Left)
+	//		}
+	//		if node.Right != nil {
+	//			queue.PushBack(node.Right)
+	//		}
+	//	}
+	//}
+	//return depth
 }
 
 type TreeNode104 struct {
 	Val   int
 	Left  *TreeNode104
 	Right *TreeNode104
+}
+
+func max104(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
 }
