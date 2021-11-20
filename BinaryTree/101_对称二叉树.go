@@ -11,7 +11,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 )
 
@@ -21,47 +20,45 @@ func main() {
 }
 
 func isSymmetric(root *TreeNode101) bool {
-	// 迭代
-	queue := list.New()
-	queue.PushBack(root.Left)
-	queue.PushBack(root.Right)
-	for queue.Len() > 0 {
-		left := queue.Remove(queue.Front()).(*TreeNode101)
-		right := queue.Remove(queue.Front()).(*TreeNode101)
+	// 递归
+	if root == nil {
+		return true
+	}
+	var compare func(left, right *TreeNode101) bool
+	compare = func(left, right *TreeNode101) bool {
 		if left == nil && right == nil {
-			continue
-		}
-		if left == nil || right == nil || left.Val != right.Val {
+			return true
+		} else if left == nil || right == nil {
+			return false
+		} else if left.Val != right.Val {
 			return false
 		}
-		queue.PushBack(left.Left)
-		queue.PushBack(right.Right)
-		queue.PushBack(left.Right)
-		queue.PushBack(right.Left)
-	}
-	return true
+		outside := compare(left.Left, right.Right)
+		inside := compare(left.Right, right.Left)
 
-	// 递归
-	//if root == nil {
-	//	return true
-	//}
-	//var compare func(left, right *TreeNode101) bool
-	//compare = func(left, right *TreeNode101) bool {
+		return outside && inside
+	}
+	return compare(root.Left, root.Right)
+
+	// 迭代
+	//queue := list.New()
+	//queue.PushBack(root.Left)
+	//queue.PushBack(root.Right)
+	//for queue.Len() > 0 {
+	//	left := queue.Remove(queue.Front()).(*TreeNode101)
+	//	right := queue.Remove(queue.Front()).(*TreeNode101)
 	//	if left == nil && right == nil {
-	//		return true
-	//	} else if left == nil && right != nil {
-	//		return false
-	//	} else if left != nil && right == nil {
-	//		return false
-	//	} else if left.Val != right.Val {
+	//		continue
+	//	}
+	//	if left == nil || right == nil || left.Val != right.Val {
 	//		return false
 	//	}
-	//	outside := compare(left.Left, right.Right)
-	//	inside := compare(left.Right, right.Left)
-	//
-	//	return outside && inside
+	//	queue.PushBack(left.Left)
+	//	queue.PushBack(right.Right)
+	//	queue.PushBack(left.Right)
+	//	queue.PushBack(right.Left)
 	//}
-	//return compare(root.Left, root.Right)
+	//return true
 }
 
 type TreeNode101 struct {
