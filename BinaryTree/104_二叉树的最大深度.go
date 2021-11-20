@@ -19,14 +19,41 @@ func main() {
 	fmt.Println(maxDepth(root))
 }
 
-func maxDepth(root *TreeNode104) int {
-	// 递归
-	if root == nil {
-		return 0
+func maxDepth(root *TreeNode104) (ans int) {
+	// 前序
+	var getDepth func(node *TreeNode104, depth int)
+	getDepth = func(node *TreeNode104, depth int) {
+		if depth > ans {
+			ans = depth
+		}
+		if node.Left == nil && node.Right == nil {
+			return
+		}
+		if node.Left != nil {
+			depth++
+			getDepth(node.Left, depth)
+			depth--
+		}
+		if node.Right != nil {
+			depth++
+			getDepth(node.Right, depth)
+			depth--
+		}
+		return
 	}
-	return 1 + max104(maxDepth(root.Left), maxDepth(root.Right))
+	if root == nil {
+		return
+	}
+	getDepth(root, 1)
+	return
 
-	// 迭代
+	// 递归
+	//if root == nil {
+	//	return 0
+	//}
+	//return 1 + max104(maxDepth(root.Left), maxDepth(root.Right))
+
+	// 层序迭代
 	//if root == nil {
 	//	return 0
 	//}
@@ -55,9 +82,9 @@ type TreeNode104 struct {
 	Right *TreeNode104
 }
 
-func max104(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
+//func max104(x, y int) int {
+//	if x > y {
+//		return x
+//	}
+//	return y
+//}
