@@ -28,7 +28,7 @@ func binaryTreePaths(root *TreeNode257) (ans []string) {
 			ans = append(ans, v)
 			return
 		}
-		s = s + strconv.Itoa(node.Val) + "->"
+		s += strconv.Itoa(node.Val) + "->"
 		if node.Left != nil {
 			travel(node.Left, s)
 		}
