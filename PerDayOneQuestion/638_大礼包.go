@@ -53,7 +53,7 @@ func shoppingOffers(price []int, special [][]int, needs []int) int {
 				}
 				nextNeeds[i] = need - byte(s[i])
 			}
-			minPrice = min(minPrice, dfs(nextNeeds)+s[n])
+			minPrice = min638(minPrice, dfs(nextNeeds)+s[n])
 		}
 		dp[string(curNeeds)] = minPrice
 		return
@@ -66,7 +66,7 @@ func shoppingOffers(price []int, special [][]int, needs []int) int {
 	return dfs(curNeeds)
 }
 
-func min(x, y int) int {
+func min638(x, y int) int {
 	if x < y {
 		return x
 	}
