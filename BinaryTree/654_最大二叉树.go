@@ -12,7 +12,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
@@ -30,9 +29,8 @@ func constructMaximumBinaryTree(nums []int) *TreeNode654 {
 		root.Val = nums[0]
 		return root
 	}
-	tmp := max654(nums)
-	maxIndex := tmp[0]
-	root.Val = tmp[1]
+	maxIndex := max654(nums)
+	root.Val = nums[maxIndex]
 	root.Left = constructMaximumBinaryTree(nums[:maxIndex])
 	root.Right = constructMaximumBinaryTree(nums[maxIndex+1:])
 
@@ -45,14 +43,11 @@ type TreeNode654 struct {
 	Right *TreeNode654
 }
 
-func max654(nums []int) [2]int {
-	max := math.MinInt64
-	maxIndex := -1
-	for i, num := range nums {
-		if num > max {
-			max = num
+func max654(nums []int) (maxIndex int) {
+	for i := 0; i < len(nums); i++ {
+		if nums[i] > nums[maxIndex] {
 			maxIndex = i
 		}
 	}
-	return [2]int{maxIndex, max}
+	return
 }
