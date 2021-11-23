@@ -15,11 +15,11 @@ import "fmt"
 func main() {
 	inorder := []int{9, 3, 15, 20, 7}
 	postorder := []int{9, 15, 7, 20, 3}
-	root := buildTree(inorder, postorder)
+	root := buildTreeInPost(inorder, postorder)
 	fmt.Println(root.Val)
 }
 
-func buildTree(inorder []int, postorder []int) *TreeNode106 {
+func buildTreeInPost(inorder []int, postorder []int) *TreeNode106 {
 	var dfs func([]int, []int) *TreeNode106
 	dfs = func(inorder []int, postorder []int) *TreeNode106 {
 		if len(postorder) == 0 {
