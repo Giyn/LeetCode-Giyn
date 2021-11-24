@@ -22,18 +22,37 @@ func main() {
 }
 
 func isValidBST(root *TreeNode098) bool {
-	return dfs(root, math.MinInt64, math.MaxInt64)
+	// 迭代
+	var stack []*TreeNode098
+	inorder := math.MinInt64
+	for len(stack) > 0 || root != nil {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if root.Val <= inorder {
+			return false
+		}
+		inorder = root.Val
+		root = root.Right
+	}
+	return true
+
+	// 递归
+	//return dfs(root, math.MinInt64, math.MaxInt64)
 }
 
-func dfs(root *TreeNode098, lower, upper int) bool {
-	if root == nil {
-		return true
-	}
-	if root.Val >= upper || root.Val <= lower {
-		return false
-	}
-	return dfs(root.Left, lower, root.Val) && dfs(root.Right, root.Val, upper)
-}
+//func dfs(root *TreeNode098, lower, upper int) bool {
+//	if root == nil {
+//		return true
+//	}
+//	if root.Val >= upper || root.Val <= lower {
+//		return false
+//	}
+//	return dfs(root.Left, lower, root.Val) && dfs(root.Right, root.Val, upper)
+//}
 
 type TreeNode098 struct {
 	Val   int
