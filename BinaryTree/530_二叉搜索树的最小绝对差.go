@@ -21,33 +21,52 @@ func main() {
 }
 
 func getMinimumDifference(root *TreeNode530) int {
+	// 中序遍历
 	ans := math.MaxInt64
-	var dfs func(node *TreeNode530)
-	dfs = func(node *TreeNode530) {
+	var pre *TreeNode530
+	var traversal func(node *TreeNode530)
+	traversal = func(node *TreeNode530) {
 		if node == nil {
 			return
 		}
-		if node.Left != nil {
-			ans = min530(ans, abs530(node.Val-node.Left.Val))
-			cur := node.Left.Right
-			for cur != nil {
-				ans = min530(ans, abs530(node.Val-cur.Val))
-				cur = cur.Right
-			}
-			dfs(node.Left)
+		traversal(node.Left)
+		if pre != nil {
+			ans = min530(ans, node.Val-pre.Val)
 		}
-		if node.Right != nil {
-			ans = min530(ans, abs530(node.Val-node.Right.Val))
-			cur := node.Right.Left
-			for cur != nil {
-				ans = min530(ans, abs530(node.Val-cur.Val))
-				cur = cur.Left
-			}
-			dfs(node.Right)
-		}
+		pre = node
+		traversal(node.Right)
 	}
-	dfs(root)
+	traversal(root)
 	return ans
+
+	// DFS
+	//ans := math.MaxInt64
+	//var dfs func(node *TreeNode530)
+	//dfs = func(node *TreeNode530) {
+	//	if node == nil {
+	//		return
+	//	}
+	//	if node.Left != nil {
+	//		ans = min530(ans, node.Val-node.Left.Val)
+	//		cur := node.Left.Right
+	//		for cur != nil {
+	//			ans = min530(ans, node.Val-cur.Val)
+	//			cur = cur.Right
+	//		}
+	//		dfs(node.Left)
+	//	}
+	//	if node.Right != nil {
+	//		ans = min530(ans, node.Right.Val-node.Val)
+	//		cur := node.Right.Left
+	//		for cur != nil {
+	//			ans = min530(ans, cur.Val-node.Val)
+	//			cur = cur.Left
+	//		}
+	//		dfs(node.Right)
+	//	}
+	//}
+	//dfs(root)
+	//return ans
 }
 
 type TreeNode530 struct {
@@ -61,9 +80,4 @@ func min530(x, y int) int {
 		return x
 	}
 	return y
-}
-
-func abs530(n int) int {
-	y := n >> 63
-	return (n ^ y) - y
 }
