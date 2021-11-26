@@ -21,22 +21,35 @@ func main() {
 }
 
 func lowestCommonAncestorBST(root, p, q *TreeNode235) *TreeNode235 {
-	if root == p || root == q || root == nil {
-		return root
-	}
-	if root.Val > p.Val && root.Val > q.Val {
-		left := lowestCommonAncestorBST(root.Left, p, q)
-		if left != nil {
-			return left
-		}
-	}
-	if root.Val < p.Val && root.Val < q.Val {
-		right := lowestCommonAncestorBST(root.Right, p, q)
-		if right != nil {
-			return right
+	// 迭代
+	for root != nil {
+		if root.Val > p.Val && root.Val > q.Val {
+			root = root.Left
+		} else if root.Val < p.Val && root.Val < q.Val {
+			root = root.Right
+		} else {
+			return root
 		}
 	}
 	return root
+
+	// 递归
+	//if root == p || root == q || root == nil {
+	//	return root
+	//}
+	//if root.Val > p.Val && root.Val > q.Val {
+	//	left := lowestCommonAncestorBST(root.Left, p, q)
+	//	if left != nil {
+	//		return left
+	//	}
+	//}
+	//if root.Val < p.Val && root.Val < q.Val {
+	//	right := lowestCommonAncestorBST(root.Right, p, q)
+	//	if right != nil {
+	//		return right
+	//	}
+	//}
+	//return root
 }
 
 type TreeNode235 struct {
