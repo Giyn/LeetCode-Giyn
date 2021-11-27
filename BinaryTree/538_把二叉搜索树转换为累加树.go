@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 func main() {
 	root := &TreeNode538{4, &TreeNode538{1, &TreeNode538{0, nil, nil}, &TreeNode538{2, nil, &TreeNode538{3, nil, nil}}}, &TreeNode538{6, &TreeNode538{5, nil, nil}, &TreeNode538{7, nil, &TreeNode538{8, nil, nil}}}}
@@ -19,19 +22,37 @@ func main() {
 }
 
 func convertBST(root *TreeNode538) *TreeNode538 {
+	// 迭代
 	var pre int
-	var traversal func(cur *TreeNode538)
-	traversal = func(cur *TreeNode538) {
-		if cur == nil {
-			return
+	stack := list.New()
+	cur := root
+	for cur != nil || stack.Len() != 0 {
+		if cur != nil {
+			stack.PushBack(cur)
+			cur = cur.Right
+		} else {
+			cur = stack.Remove(stack.Back()).(*TreeNode538)
+			cur.Val += pre
+			pre = cur.Val
+			cur = cur.Left
 		}
-		traversal(cur.Right)
-		cur.Val += pre
-		pre = cur.Val
-		traversal(cur.Left)
 	}
-	traversal(root)
 	return root
+
+	// 递归
+	//var pre int
+	//var traversal func(cur *TreeNode538)
+	//traversal = func(cur *TreeNode538) {
+	//	if cur == nil {
+	//		return
+	//	}
+	//	traversal(cur.Right)
+	//	cur.Val += pre
+	//	pre = cur.Val
+	//	traversal(cur.Left)
+	//}
+	//traversal(root)
+	//return root
 }
 
 type TreeNode538 struct {
