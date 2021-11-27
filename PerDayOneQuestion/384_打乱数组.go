@@ -22,19 +22,19 @@ func main() {
 	fmt.Println(solution.Shuffle())
 }
 
-type Solution struct {
+type Solution384 struct {
 	nums []int
 }
 
-func Constructor384(nums []int) Solution {
-	return Solution{nums}
+func Constructor384(nums []int) Solution384 {
+	return Solution384{nums}
 }
 
-func (this *Solution) Reset() []int {
+func (this *Solution384) Reset() []int {
 	return this.nums
 }
 
-func (this *Solution) Shuffle() []int {
+func (this *Solution384) Shuffle() []int {
 	tmp := make([]int, len(this.nums))
 	copy(tmp, this.nums)
 	n := len(tmp)
