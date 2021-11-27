@@ -12,15 +12,15 @@ package main
 
 import "fmt"
 
-func main () {
+func main() {
 	n := 3
 	fmt.Println(minSteps(n))
 }
 
 func minSteps(n int) int {
 	ans := 0
-	for i := 2; i * i <= n; i++ {
-		for n % i == 0 {
+	for i := 2; i*i <= n; i++ {
+		for n%i == 0 {
 			ans += i
 			n /= i
 		}

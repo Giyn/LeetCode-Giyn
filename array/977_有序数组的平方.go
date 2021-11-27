@@ -26,8 +26,8 @@ func sortedSquares(nums []int) []int {
 	i, j := 0, n-1
 	ans := make([]int, n)
 
-	for pos := n-1; pos >= 0; pos-- {
-		if a, b := nums[i] * nums[i], nums[j] * nums[j]; a > b {
+	for pos := n - 1; pos >= 0; pos-- {
+		if a, b := nums[i]*nums[i], nums[j]*nums[j]; a > b {
 			ans[pos] = a
 			i++
 		} else {

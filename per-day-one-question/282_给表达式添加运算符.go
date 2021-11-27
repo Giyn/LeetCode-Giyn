@@ -38,9 +38,12 @@ func addOperators(num string, target int) (ans []string) {
 			if i == 0 {
 				backtrack(expr, j+1, val, val)
 			} else {
-				expr[signIndex] = '+'; backtrack(expr, j+1, res+val, val)
-				expr[signIndex] = '-'; backtrack(expr, j+1, res-val, -val)
-				expr[signIndex] = '*'; backtrack(expr, j+1, res-mul+mul*val, mul*val)
+				expr[signIndex] = '+'
+				backtrack(expr, j+1, res+val, val)
+				expr[signIndex] = '-'
+				backtrack(expr, j+1, res-val, -val)
+				expr[signIndex] = '*'
+				backtrack(expr, j+1, res-mul+mul*val, mul*val)
 			}
 		}
 	}
