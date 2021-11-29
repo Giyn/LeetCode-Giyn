@@ -30,7 +30,7 @@ func trapRainWater(heightMap [][]int) (ans int) {
 	for i := range vis {
 		vis[i] = make([]bool, n)
 	}
-	h := &hp{}
+	h := &hp407{}
 	for i, row := range heightMap {
 		for j, v := range row {
 			if i == 0 || i == m-1 || j == 0 || j == n-1 {
@@ -60,21 +60,21 @@ func trapRainWater(heightMap [][]int) (ans int) {
 type cell struct {
 	h, x, y int
 }
-type hp []cell
+type hp407 []cell
 
-func (h hp) Len() int {
+func (h hp407) Len() int {
 	return len(h)
 }
-func (h hp) Less(i, j int) bool {
+func (h hp407) Less(i, j int) bool {
 	return h[i].h < h[j].h
 }
-func (h hp) Swap(i, j int) {
+func (h hp407) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 }
-func (h *hp) Push(v interface{}) {
+func (h *hp407) Push(v interface{}) {
 	*h = append(*h, v.(cell))
 }
-func (h *hp) Pop() interface{} {
+func (h *hp407) Pop() interface{} {
 	a := *h
 	v := a[len(a)-1]
 	*h = a[:len(a)-1]
