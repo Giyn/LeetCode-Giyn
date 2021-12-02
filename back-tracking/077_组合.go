@@ -27,11 +27,11 @@ func combine(n int, k int) [][]int {
 	if n <= 0 || k <= 0 || k > n {
 		return ans
 	}
-	backtrack(n, k, 1)
+	backtrack077(n, k, 1)
 	return ans
 }
 
-func backtrack(n, k, start int) {
+func backtrack077(n, k, start int) {
 	if len(track) == k {
 		ans = append(ans, append([]int{}, track...))
 		return
@@ -42,7 +42,7 @@ func backtrack(n, k, start int) {
 	}
 	for i := start; i <= n; i++ {
 		track = append(track, i)
-		backtrack(n, k, i+1)
+		backtrack077(n, k, i+1)
 		track = track[:len(track)-1]
 	}
 }
