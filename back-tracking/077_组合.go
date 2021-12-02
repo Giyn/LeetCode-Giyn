@@ -18,31 +18,26 @@ func main() {
 	fmt.Println(combine(n, k))
 }
 
-var ans [][]int
-var track []int
-
-func combine(n int, k int) [][]int {
-	ans = [][]int{}
-	track = []int{}
+func combine(n int, k int) (ans [][]int) {
 	if n <= 0 || k <= 0 || k > n {
 		return ans
 	}
-	backtrack077(n, k, 1)
+	var backtrack func(int, int, int, []int)
+	backtrack = func(n, k, start int, track []int) {
+		if len(track) == k {
+			ans = append(ans, append([]int{}, track...))
+			return
+		}
+		// 剪枝
+		if len(track)+n-start+1 < k {
+			return
+		}
+		for i := start; i <= n; i++ {
+			track = append(track, i)
+			backtrack(n, k, i+1, track)
+			track = track[:len(track)-1]
+		}
+	}
+	backtrack(n, k, 1, []int{})
 	return ans
-}
-
-func backtrack077(n, k, start int) {
-	if len(track) == k {
-		ans = append(ans, append([]int{}, track...))
-		return
-	}
-	// 剪枝
-	if len(track)+n-start+1 < k {
-		return
-	}
-	for i := start; i <= n; i++ {
-		track = append(track, i)
-		backtrack077(n, k, i+1)
-		track = track[:len(track)-1]
-	}
 }
