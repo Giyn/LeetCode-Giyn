@@ -19,26 +19,30 @@ func main() {
 }
 
 var ans [][]int
+var track []int
 
 func combine(n int, k int) [][]int {
 	ans = [][]int{}
+	track = []int{}
 	if n <= 0 || k <= 0 || k > n {
 		return ans
 	}
-	backtrack(n, k, 1, []int{})
+	backtrack(n, k, 1)
 	return ans
 }
 
-func backtrack(n, k, start int, track []int) {
+func backtrack(n, k, start int) {
 	if len(track) == k {
 		ans = append(ans, append([]int{}, track...))
+		return
 	}
+	// 剪枝
 	if len(track)+n-start+1 < k {
 		return
 	}
 	for i := start; i <= n; i++ {
 		track = append(track, i)
-		backtrack(n, k, i+1, track)
+		backtrack(n, k, i+1)
 		track = track[:len(track)-1]
 	}
 }
