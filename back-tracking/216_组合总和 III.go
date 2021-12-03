@@ -22,6 +22,9 @@ func combinationSum3(k int, n int) (ans [][]int) {
 	var path []int
 	var backtrack func(targetSum int, k int, start int)
 	backtrack = func(targetSum int, k int, start int) {
+		if targetSum > n {
+			return
+		}
 		if len(path) == k {
 			if targetSum == 0 {
 				ans = append(ans, append([]int{}, path...))
