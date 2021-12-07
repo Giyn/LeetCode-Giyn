@@ -37,7 +37,7 @@ func colorBorder(grid [][]int, row int, col int, color int) [][]int {
 		isBoard := false
 		for _, dir := range dirs {
 			nx, ny := x+dir.x, y+dir.y
-			if !(nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] == originColor) {
+			if nx < 0 || nx >= m || ny < 0 || ny >= n || grid[nx][ny] != originColor {
 				isBoard = true
 			} else if !vis[nx][ny] {
 				vis[nx][ny] = true
