@@ -21,7 +21,7 @@ func main() {
 }
 
 func findItinerary(tickets [][]string) []string {
-	var ans []string
+	var ans = []string{"JFK"}
 	var mpSort = make(map[string][]string)
 	var mp = make(map[string]map[string]int)
 	var ticketNum = len(tickets)
@@ -65,7 +65,6 @@ func findItinerary(tickets [][]string) []string {
 			mp[k][v[i]]++
 		}
 	}
-	ans = append(ans, "JFK")
 	backtrack()
 	return ans
 }
