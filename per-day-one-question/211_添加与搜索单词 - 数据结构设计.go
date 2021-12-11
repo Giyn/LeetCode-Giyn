@@ -18,7 +18,7 @@ type WordDictionary struct {
 }
 
 func main() {
-	obj := Constructor()
+	obj := Constructor211()
 	obj.AddWord("bad")
 	obj.AddWord("dad")
 	obj.AddWord("mad")
@@ -28,7 +28,7 @@ func main() {
 	fmt.Println(obj.Search("b.."))
 }
 
-func Constructor() WordDictionary {
+func Constructor211() WordDictionary {
 	return WordDictionary{}
 }
 
