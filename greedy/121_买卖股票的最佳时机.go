@@ -21,9 +21,6 @@ func main() {
 }
 
 func maxProfit121(prices []int) (ans int) {
-	if len(prices) <= 1 {
-		return
-	}
 	minPrice := math.MaxInt64
 	for i := 0; i < len(prices); i++ {
 		if prices[i] < minPrice {
