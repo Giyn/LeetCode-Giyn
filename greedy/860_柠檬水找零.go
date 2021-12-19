@@ -21,28 +21,29 @@ func lemonadeChange(bills []int) bool {
 	if bills[0] != 5 {
 		return false
 	}
-	mp := make(map[int]int, 3)
+	five, ten := 0, 0
 	for _, bill := range bills {
-		mp[bill]++
 		if bill == 5 {
+			five++
 			continue
 		} else if bill == 10 {
-			if mp[5] > 0 {
-				mp[5]--
+			ten++
+			if five > 0 {
+				five--
 			} else {
 				return false
 			}
 		} else if bill == 20 {
-			if mp[10] > 0 {
-				mp[10]--
-				if mp[5] > 0 {
-					mp[5]--
+			if ten > 0 {
+				ten--
+				if five > 0 {
+					five--
 				} else {
 					return false
 				}
 			} else {
-				if mp[5] > 2 {
-					mp[5] -= 3
+				if five > 2 {
+					five -= 3
 				} else {
 					return false
 				}
