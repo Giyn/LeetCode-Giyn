@@ -12,25 +12,25 @@ package main
 
 import "fmt"
 
+type TreeNode230 struct {
+	Val   int
+	Left  *TreeNode230
+	Right *TreeNode230
+}
+
 func main() {
-	node2 := TreeNode{2, nil, nil}
-	node1 := TreeNode{1, nil, &node2}
-	node4 := TreeNode{4, nil, nil}
-	root := TreeNode{3, &node1, &node4}
+	node2 := TreeNode230{2, nil, nil}
+	node1 := TreeNode230{1, nil, &node2}
+	node4 := TreeNode230{4, nil, nil}
+	root := TreeNode230{3, &node1, &node4}
 	k := 1
 	fmt.Println(kthSmallest(&root, k))
 }
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
-func kthSmallest(root *TreeNode, k int) int {
+func kthSmallest(root *TreeNode230, k int) int {
 	var ans int
-	var LDR func(root *TreeNode)
-	LDR = func(root *TreeNode) {
+	var LDR func(root *TreeNode230)
+	LDR = func(root *TreeNode230) {
 		if root != nil {
 			LDR(root.Left)
 			k--
