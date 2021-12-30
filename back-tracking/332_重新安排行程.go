@@ -20,51 +20,24 @@ func main() {
 	fmt.Println(findItinerary(tickets))
 }
 
-func findItinerary(tickets [][]string) []string {
-	var ans = []string{"JFK"}
-	var mpSort = make(map[string][]string)
-	var mp = make(map[string]map[string]int)
-	var ticketNum = len(tickets)
-
-	var backtrack func() bool
-	backtrack = func() bool {
-		if len(ans) == ticketNum+1 {
-			return true
+func findItinerary(tickets [][]string) (ans []string) {
+	var d = map[string][]string{}
+	var dfs func(string)
+	dfs = func(f string) {
+		for len(d[f]) > 0 {
+			v := d[f][0]
+			d[f] = d[f][1:]
+			dfs(v)
 		}
-		last := ans[len(ans)-1]
-		for k, v := range mp[last] {
-			if v > 0 {
-				ans = append(ans, k)
-				mp[last][k]--
-				if backtrack() {
-					return true
-				}
-				ans = ans[:len(ans)-1]
-				mp[last][k]++
-			}
-		}
-		return false
+		ans = append([]string{f}, ans...)
 	}
-	for k := range mp {
-		delete(mp, k)
+	for _, v := range tickets {
+		d[v[0]] = append(d[v[0]], v[1])
 	}
-	for k := range mpSort {
-		delete(mpSort, k)
+	for _, v := range d {
+		sort.Strings(v)
 	}
-	for _, ticket := range tickets {
-		if _, ok := mp[ticket[0]]; !ok {
-			mp[ticket[0]] = make(map[string]int)
-		}
-		mpSort[ticket[0]] = append(mpSort[ticket[0]], ticket[1])
-	}
-	for k := range mpSort {
-		sort.Strings(mpSort[k])
-	}
-	for k, v := range mpSort {
-		for i := 0; i < len(v); i++ {
-			mp[k][v[i]]++
-		}
-	}
-	backtrack()
+	ans = []string{}
+	dfs("JFK")
 	return ans
 }
