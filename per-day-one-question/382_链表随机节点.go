@@ -32,27 +32,36 @@ type ListNode382 struct {
 
 type Solution struct {
 	listNode *ListNode382
-	length   int
+	//length   int
 }
 
 func Constructor(head *ListNode382) Solution {
-	count := 0
-	tmp := head
-	for tmp != nil {
-		count++
-		tmp = tmp.Next
-	}
-	return Solution{head, count}
+	//count := 0
+	//tmp := head
+	//for tmp != nil {
+	//	count++
+	//	tmp = tmp.Next
+	//}
+	//return Solution{head, count}
+
+	return Solution{head}
 }
 
-func (this *Solution) GetRandom() int {
-	index := rand.Intn(this.length)
-	tmp := this.listNode
-	for index > 0 {
-		tmp = tmp.Next
-		index--
+func (this *Solution) GetRandom() (ans int) {
+	//index := rand.Intn(this.length)
+	//tmp := this.listNode
+	//for index > 0 {
+	//	tmp = tmp.Next
+	//	index--
+	//}
+	//return tmp.Val
+
+	for node, index := this.listNode, 1; node != nil; node, index = node.Next, index+1 {
+		if rand.Intn(index) == 0 {
+			ans = node.Val
+		}
 	}
-	return tmp.Val
+	return
 }
 
 /**
