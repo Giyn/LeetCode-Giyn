@@ -20,6 +20,14 @@ func main() {
 }
 
 func lengthOfLIS(nums []int) int {
+	var max func(int, int) int
+	max = func(x, y int) int {
+		if x < y {
+			return y
+		}
+		return x
+	}
+
 	dp := make([]int, len(nums))
 	ans := 0
 	for i := range nums {
@@ -38,11 +46,4 @@ func lengthOfLIS(nums []int) int {
 	}
 
 	return ans
-}
-
-func max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
 }
