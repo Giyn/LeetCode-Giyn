@@ -21,6 +21,10 @@ func main() {
 }
 
 func divide(dividend int, divisor int) int {
+	abs := func(n int) int {
+		y := n >> 63
+		return (n ^ y) - y
+	}
 	if dividend == 0 {
 		return 0
 	}
@@ -39,7 +43,7 @@ func divide(dividend int, divisor int) int {
 	if (dividend < 0) != (divisor < 0) {
 		diffSign = true
 	}
-	a, b := abs029(dividend), abs029(divisor)
+	a, b := abs(dividend), abs(divisor)
 	ans := 0
 	for a >= b {
 		base, cnt := b, 1
@@ -55,9 +59,4 @@ func divide(dividend int, divisor int) int {
 	}
 
 	return ans
-}
-
-func abs029(n int) int {
-	y := n >> 63
-	return (n ^ y) - y
 }
