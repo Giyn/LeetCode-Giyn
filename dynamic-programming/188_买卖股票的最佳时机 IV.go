@@ -37,8 +37,8 @@ func maxProfit4(k int, prices []int) int {
 	}
 	for i := 1; i < len(prices); i++ {
 		for j := 0; j < 2*k-1; j = j + 2 {
-			dp[i][j+1] = max(dp[i-1][j+1], dp[i-1][j]-prices[i])
-			dp[i][j+2] = max(dp[i-1][j+2], dp[i-1][j+1]+prices[i])
+			dp[i][j+1] = max(dp[i-1][j+1], dp[i-1][j]-prices[i])   // 达到买入股票的状态
+			dp[i][j+2] = max(dp[i-1][j+2], dp[i-1][j+1]+prices[i]) // 达到卖出股票的状态
 		}
 	}
 	return dp[len(prices)-1][2*k]
