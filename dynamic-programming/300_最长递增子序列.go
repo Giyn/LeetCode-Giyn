@@ -14,36 +14,33 @@ import "fmt"
 
 func main() {
 	nums := []int{10, 9, 2, 5, 3, 7, 101, 18}
-	//nums := []int{0, 1, 0, 3, 2,3}
-	//nums := []int{7, 7,7, 7, 7, 7, 7}
+	//nums := []int{0, 1, 0, 3, 2, 3}
+	//nums := []int{7, 7, 7, 7, 7, 7, 7}
 	fmt.Println(lengthOfLIS(nums))
 }
 
-func lengthOfLIS(nums []int) int {
-	var max func(int, int) int
-	max = func(x, y int) int {
-		if x < y {
-			return y
-		}
-		return x
+func lengthOfLIS(nums []int) (ans int) {
+	if len(nums) == 1 {
+		return 1
 	}
-
-	dp := make([]int, len(nums))
-	ans := 0
-	for i := range nums {
+	max := func(x, y int) int {
+		if x > y {
+			return x
+		}
+		return y
+	}
+	n := len(nums)
+	dp := make([]int, n)
+	for i := range dp {
 		dp[i] = 1
 	}
-
-	for i := 0; i < len(nums); i++ {
+	for i := 1; i < n; i++ {
 		for j := 0; j < i; j++ {
-			if nums[j] < nums[i] {
+			if nums[i] > nums[j] {
 				dp[i] = max(dp[i], dp[j]+1)
 			}
 		}
-	}
-	for i := 0; i < len(nums); i++ {
 		ans = max(ans, dp[i])
 	}
-
-	return ans
+	return
 }
