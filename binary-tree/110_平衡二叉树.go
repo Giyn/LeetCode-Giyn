@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	"LeetCodeGiyn/utils"
+	"fmt"
+)
 
 func main() {
 	root := &TreeNode110{3, &TreeNode110{9, nil, nil}, &TreeNode110{20, &TreeNode110{15, nil, nil}, &TreeNode110{7, nil, nil}}}
@@ -39,10 +42,10 @@ func getHeight(node *TreeNode110) int {
 	if rightHeight == -1 {
 		return -1
 	}
-	if abs110(leftHeight-rightHeight) > 1 {
+	if utils.Abs(leftHeight-rightHeight) > 1 {
 		return -1
 	} else {
-		return 1 + max110(leftHeight, rightHeight)
+		return 1 + utils.Max(leftHeight, rightHeight)
 	}
 }
 
@@ -50,16 +53,4 @@ type TreeNode110 struct {
 	Val   int
 	Left  *TreeNode110
 	Right *TreeNode110
-}
-
-func abs110(n int) int {
-	y := n >> 63
-	return (n ^ y) - y
-}
-
-func max110(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }
