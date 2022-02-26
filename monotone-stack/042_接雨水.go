@@ -32,7 +32,7 @@ func trap(height []int) (ans int) {
 			stack = stack[:len(stack)-1]
 			stack = append(stack, i)
 		} else {
-			for len(stack) > 0 && height[stack[len(stack)-1]] < height[i] {
+			for len(stack) > 0 && height[i] > height[stack[len(stack)-1]] {
 				mid := stack[len(stack)-1]
 				stack = stack[:len(stack)-1]
 				if len(stack) > 0 {
