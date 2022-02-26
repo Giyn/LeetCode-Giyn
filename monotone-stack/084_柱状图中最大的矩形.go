@@ -32,6 +32,7 @@ func largestRectangleArea(heights []int) (ans int) {
 			stack = stack[:len(stack)-1]
 			stack = append(stack, i)
 		} else {
+			// while 循环保证覆盖所有情况
 			for len(stack) > 0 && heights[i] < heights[stack[len(stack)-1]] {
 				mid := stack[len(stack)-1]
 				stack = stack[:len(stack)-1]
