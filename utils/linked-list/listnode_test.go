@@ -8,7 +8,7 @@
 -------------------------------------
 */
 
-package utils
+package linked_list
 
 import (
 	"fmt"
