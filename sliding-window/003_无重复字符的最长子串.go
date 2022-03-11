@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils/math"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -33,7 +33,7 @@ func lengthOfLongestSubstring(s string) (ans int) {
 			mp[s[right]] = true
 			right++
 		}
-		ans = math.Max(ans, right-i)
+		ans = Max(ans, right-i)
 	}
 	return ans
 }
