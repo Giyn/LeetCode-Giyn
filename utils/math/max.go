@@ -8,7 +8,7 @@
 -------------------------------------
 */
 
-package utils
+package math
 
 func Max(args ...int) (ans int) {
 	ans = args[0]

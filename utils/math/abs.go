@@ -8,7 +8,7 @@
 -------------------------------------
 */
 
-package utils
+package math
 
 func Abs(n int) int {
 	x := n >> 63
