@@ -11,7 +11,7 @@
 package main
 
 import (
-	. "LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/linked-list"
 	"fmt"
 )
 
