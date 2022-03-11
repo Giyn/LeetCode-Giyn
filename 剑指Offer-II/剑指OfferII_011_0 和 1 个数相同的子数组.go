@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -33,7 +33,7 @@ func findMaxLength(nums []int) (ans int) {
 		pre += nums[i]
 		// 从第0位开始数,到第i位时,0比1多3个;到第j位时,0也比1多3个,这中间的个数必然相等
 		if v, ok := mp[pre]; ok {
-			ans = utils.Max(ans, i-v)
+			ans = Max(ans, i-v)
 		} else {
 			mp[pre] = i
 		}

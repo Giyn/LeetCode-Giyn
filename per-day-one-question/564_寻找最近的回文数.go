@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 	"strconv"
@@ -42,8 +42,8 @@ func nearestPalindromic(n string) string {
 	for _, candidate := range candidates {
 		if candidate != selfNumber {
 			if ans == -1 ||
-				utils.Abs(candidate-selfNumber) < utils.Abs(ans-selfNumber) ||
-				utils.Abs(candidate-selfNumber) == utils.Abs(ans-selfNumber) && candidate < ans {
+				Abs(candidate-selfNumber) < Abs(ans-selfNumber) ||
+				Abs(candidate-selfNumber) == Abs(ans-selfNumber) && candidate < ans {
 				ans = candidate
 			}
 		}

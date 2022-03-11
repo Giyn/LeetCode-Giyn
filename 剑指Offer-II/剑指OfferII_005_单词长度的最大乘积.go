@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -31,7 +31,7 @@ func maxProduct(words []string) (ans int) {
 	for i := 0; i < n; i++ {
 		for j := i + 1; j < n; j++ {
 			if (wordCode[i] & wordCode[j]) == 0 {
-				ans = utils.Max(ans, len(words[i])*len(words[j]))
+				ans = Max(ans, len(words[i])*len(words[j]))
 			}
 		}
 	}

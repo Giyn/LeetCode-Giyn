@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ func main() {
 func maxArea(height []int) (ans int) {
 	left, right := 0, len(height)-1
 	for left < right {
-		ans = utils.Max(ans, (right-left)*utils.Min(height[left], height[right]))
+		ans = Max(ans, (right-left)*Min(height[left], height[right]))
 		if height[left] < height[right] {
 			left++
 		} else {

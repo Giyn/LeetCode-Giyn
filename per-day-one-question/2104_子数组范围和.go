@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -25,8 +25,8 @@ func subArrayRanges(nums []int) (ans int64) {
 		max := nums[i]
 		min := nums[i]
 		for j := i + 1; j < len(nums); j++ {
-			max = utils.Max(max, nums[j])
-			min = utils.Min(min, nums[j])
+			max = Max(max, nums[j])
+			min = Min(min, nums[j])
 			ans += int64(max - min)
 		}
 	}

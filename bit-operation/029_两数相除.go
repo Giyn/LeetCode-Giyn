@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 )
@@ -41,7 +41,7 @@ func divide(dividend int, divisor int) (ans int) {
 	if (dividend < 0) != (divisor < 0) {
 		diffSign = -1
 	}
-	a, b := utils.Abs(dividend), utils.Abs(divisor)
+	a, b := Abs(dividend), Abs(divisor)
 	for a >= b {
 		base, cnt := b, 1
 		for (base << 1) <= a {

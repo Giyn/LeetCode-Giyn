@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -42,10 +42,10 @@ func getHeight(node *TreeNode110) int {
 	if rightHeight == -1 {
 		return -1
 	}
-	if utils.Abs(leftHeight-rightHeight) > 1 {
+	if Abs(leftHeight-rightHeight) > 1 {
 		return -1
 	} else {
-		return 1 + utils.Max(leftHeight, rightHeight)
+		return 1 + Max(leftHeight, rightHeight)
 	}
 }
 

@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -35,7 +35,7 @@ func minDistance(word1 string, word2 string) int {
 			if word1[i-1] == word2[j-1] {
 				dp[i][j] = dp[i-1][j-1]
 			} else {
-				dp[i][j] = utils.Min(dp[i-1][j-1]+2, dp[i-1][j]+1, dp[i][j-1]+1)
+				dp[i][j] = Min(dp[i-1][j-1]+2, dp[i-1][j]+1, dp[i][j-1]+1)
 			}
 		}
 	}

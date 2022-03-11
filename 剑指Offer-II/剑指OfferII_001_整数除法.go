@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 )
@@ -38,7 +38,7 @@ func divide(a int, b int) (ans int) {
 	if (a < 0 && b > 0) || (a > 0 && b < 0) {
 		sign = -1
 	}
-	a, b = utils.Abs(a), utils.Abs(b)
+	a, b = Abs(a), Abs(b)
 	calc := func(x, y int) (int, int) {
 		n := 1
 		for x > y<<1 {

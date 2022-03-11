@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -41,7 +41,7 @@ func largestRectangleArea(heights []int) (ans int) {
 					right := i
 					w := right - left - 1
 					h := heights[mid]
-					ans = utils.Max(ans, w*h)
+					ans = Max(ans, w*h)
 				}
 			}
 			stack = append(stack, i)

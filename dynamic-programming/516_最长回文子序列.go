@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -31,7 +31,7 @@ func longestPalindromeSubseq(s string) int {
 			if s[i] == s[j] {
 				dp[i][j] = dp[i+1][j-1] + 2
 			} else {
-				dp[i][j] = utils.Max(dp[i+1][j], dp[i][j-1])
+				dp[i][j] = Max(dp[i+1][j], dp[i][j-1])
 			}
 		}
 	}

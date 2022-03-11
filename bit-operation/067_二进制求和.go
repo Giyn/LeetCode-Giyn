@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"strconv"
 )
@@ -25,7 +25,7 @@ func main() {
 func addBinary(a string, b string) (ans string) {
 	carry := 0
 	lenA, lenB := len(a), len(b)
-	n := utils.Max(lenA, lenB)
+	n := Max(lenA, lenB)
 
 	for i := 0; i < n; i++ {
 		if i < lenA {

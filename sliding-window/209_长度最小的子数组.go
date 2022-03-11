@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 )
@@ -34,7 +34,7 @@ func minSubArrayLen(target int, nums []int) int {
 	for right < n {
 		sum += nums[right]
 		for sum >= target {
-			ans = utils.Min(ans, right-left+1)
+			ans = Min(ans, right-left+1)
 			sum -= nums[left]
 			left++
 		}

@@ -11,7 +11,7 @@
 package main
 
 import (
-	"LeetCodeGiyn/utils"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
@@ -38,7 +38,7 @@ func trap(height []int) (ans int) {
 				if len(stack) > 0 {
 					left := stack[len(stack)-1]
 					right := i
-					h := utils.Min(height[left], height[right]) - height[mid]
+					h := Min(height[left], height[right]) - height[mid]
 					ans += (right - left - 1) * h
 				}
 			}
@@ -57,13 +57,13 @@ func trap(height []int) (ans int) {
 	//maxLeft[0] = height[0]
 	//maxRight[n-1] = height[n-1]
 	//for i := 1; i < n; i++ {
-	//	maxLeft[i] = utils.Max(maxLeft[i-1], height[i])
+	//	maxLeft[i] = Max(maxLeft[i-1], height[i])
 	//}
 	//for i := n - 2; i >= 0; i-- {
-	//	maxRight[i] = utils.Max(maxRight[i+1], height[i])
+	//	maxRight[i] = Max(maxRight[i+1], height[i])
 	//}
 	//for i := 0; i < n; i++ {
-	//	ans += utils.Min(maxLeft[i], maxRight[i]) - height[i]
+	//	ans += Min(maxLeft[i], maxRight[i]) - height[i]
 	//}
 	//return
 }
