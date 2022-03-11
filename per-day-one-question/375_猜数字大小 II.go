@@ -11,6 +11,7 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 )
@@ -29,7 +30,7 @@ func getMoneyAmount(n int) int {
 		for j := i + 1; j <= n; j++ {
 			minCost := math.MaxInt64
 			for k := i; k < j; k++ {
-				cost := k + max375(dp[i][k-1], dp[k+1][j])
+				cost := k + Max(dp[i][k-1], dp[k+1][j])
 				if cost < minCost {
 					minCost = cost
 				}
@@ -38,11 +39,4 @@ func getMoneyAmount(n int) int {
 		}
 	}
 	return dp[1][n]
-}
-
-func max375(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }

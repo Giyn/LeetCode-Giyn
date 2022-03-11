@@ -11,26 +11,28 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/math"
+	. "LeetCodeGiyn/utils/multiway-tree"
 	"fmt"
 )
 
 func main() {
-	root := &Node559{1, []*Node559{{3, []*Node559{{5, []*Node559{}}, {6, []*Node559{}}}}, {2, []*Node559{}}, {4, []*Node559{}}}}
+	root := &Node{Val: 1, Children: []*Node{{3, []*Node{{5, []*Node{}}, {6, []*Node{}}}}, {2, []*Node{}}, {4, []*Node{}}}}
 	fmt.Println(maxDepthN(root))
 }
 
-func maxDepthN(root *Node559) int {
+func maxDepthN(root *Node) int {
 	// 递归
 	if root == nil {
 		return 0
 	}
 	depth := 0
 	for i := 0; i < len(root.Children); i++ {
-		depth = max559(depth, maxDepthN(root.Children[i]))
+		depth = Max(depth, maxDepthN(root.Children[i]))
 	}
 	return 1 + depth
 
-	// 迭代
+	//迭代
 	//if root == nil {
 	//	return 0
 	//}
@@ -40,7 +42,7 @@ func maxDepthN(root *Node559) int {
 	//for queue.Len() > 0 {
 	//	length := queue.Len()
 	//	for i := 0; i < length; i++ {
-	//		node := queue.Remove(queue.Front()).(*Node559)
+	//		node := queue.Remove(queue.Front()).(*Node)
 	//		for j := 0; j < len(node.Children); j++ {
 	//			queue.PushBack(node.Children[j])
 	//		}
@@ -48,16 +50,4 @@ func maxDepthN(root *Node559) int {
 	//	depth++
 	//}
 	//return depth
-}
-
-type Node559 struct {
-	Val      int
-	Children []*Node559
-}
-
-func max559(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }

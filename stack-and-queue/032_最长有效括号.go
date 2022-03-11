@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/math"
+	"fmt"
+)
 
 func main() {
 	s := "(()))())("
@@ -29,7 +32,7 @@ func longestValidParentheses(s string) int {
 		if left < right {
 			left, right = 0, 0
 		} else if left == right {
-			max = max032(max, 2*left)
+			max = Max(max, 2*left)
 		}
 	}
 	left, right = 0, 0
@@ -42,32 +45,23 @@ func longestValidParentheses(s string) int {
 		if left > right {
 			left, right = 0, 0
 		} else if left == right {
-			max = max032(max, 2*right)
+			max = Max(max, 2*right)
 		}
 	}
 	return max
-}
 
-//func longestValidParentheses(s string) int {
-//	stack := []int{-1}
-//	max := 0
-//	for i, ch := range s {
-//		if ch == '(' {
-//			stack = append(stack, i)
-//		} else {
-//			stack = stack[:len(stack)-1]
-//			if len(stack) == 0 {
-//				stack = append(stack, i)
-//			}
-//			max = max032(max, i-stack[len(stack)-1])
-//		}
-//	}
-//	return max
-//}
-
-func max032(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
+	//stack := []int{-1}
+	//max := 0
+	//for i, ch := range s {
+	//	if ch == '(' {
+	//		stack = append(stack, i)
+	//	} else {
+	//		stack = stack[:len(stack)-1]
+	//		if len(stack) == 0 {
+	//			stack = append(stack, i)
+	//		}
+	//		max = Max(max, i-stack[len(stack)-1])
+	//	}
+	//}
+	//return max
 }

@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/math"
+	"fmt"
+)
 
 func main() {
 	rectangles := [][]int{{1, 1, 3, 3}, {3, 1, 4, 2}, {3, 2, 4, 4}, {1, 3, 2, 4}, {2, 3, 3, 4}}
@@ -21,7 +24,7 @@ func isRectangleCover(rectangles [][]int) bool {
 	x, y, a, b, s := 10001, 10001, -10001, -10001, 0
 	mp := map[int]int{} // 统计各点数量
 	for _, r := range rectangles {
-		x, y, a, b = min391(x, r[0]), min391(y, r[1]), max391(a, r[2]), max391(b, r[3])
+		x, y, a, b = Min(x, r[0]), Min(y, r[1]), Max(a, r[2]), Max(b, r[3])
 		s += (r[2] - r[0]) * (r[3] - r[1])
 		mp[point(r[0], r[1])] += 1
 		mp[point(r[0], r[3])] += 1
@@ -53,20 +56,6 @@ func isRectangleCover(rectangles [][]int) bool {
 		}
 	}
 	return true
-}
-
-func min391(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
-func max391(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }
 
 func point(a, b int) int {

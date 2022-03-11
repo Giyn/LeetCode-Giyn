@@ -11,6 +11,7 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/math"
 	"container/heap"
 	"fmt"
 )
@@ -50,7 +51,7 @@ func trapRainWater(heightMap [][]int) (ans int) {
 					ans += cur.h - heightMap[nx][ny]
 				}
 				vis[nx][ny] = true
-				heap.Push(h, cell{max407(heightMap[nx][ny], cur.h), nx, ny})
+				heap.Push(h, cell{Max(heightMap[nx][ny], cur.h), nx, ny})
 			}
 		}
 	}
@@ -79,11 +80,4 @@ func (h *hp407) Pop() interface{} {
 	v := a[len(a)-1]
 	*h = a[:len(a)-1]
 	return v
-}
-func max407(x, y int) int {
-	if x > y {
-		return x
-	} else {
-		return y
-	}
 }
