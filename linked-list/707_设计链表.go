@@ -16,7 +16,7 @@ import (
 )
 
 type MyLinkedList struct {
-	fake *ListNode
+	fake *Node
 }
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 }
 
 func Constructor() MyLinkedList {
-	fake := &ListNode{Val: -1}
+	fake := &Node{Val: -1}
 	return MyLinkedList{fake}
 }
 
@@ -51,7 +51,7 @@ func (this *MyLinkedList) Get(index int) int {
 
 func (this *MyLinkedList) AddAtHead(val int) {
 	cur := this.fake
-	node := &ListNode{Val: val, Next: cur.Next}
+	node := &Node{Val: val, Next: cur.Next}
 	cur.Next = node
 }
 
@@ -60,7 +60,7 @@ func (this *MyLinkedList) AddAtTail(val int) {
 	for cur.Next != nil {
 		cur = cur.Next
 	}
-	cur.Next = &ListNode{Val: val}
+	cur.Next = &Node{Val: val}
 }
 
 func (this *MyLinkedList) AddAtIndex(index int, val int) {
@@ -72,7 +72,7 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 	if index != 0 {
 		return
 	}
-	node := &ListNode{Val: val, Next: cur.Next}
+	node := &Node{Val: val, Next: cur.Next}
 	cur.Next = node
 }
 
