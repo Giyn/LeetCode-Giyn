@@ -17,7 +17,7 @@ import (
 
 func main() {
 	head := &ListNode382{1, &ListNode382{2, &ListNode382{3, nil}}}
-	obj := Constructor(head)
+	obj := Constructor382(head)
 	fmt.Println(obj.GetRandom())
 	fmt.Println(obj.GetRandom())
 	fmt.Println(obj.GetRandom())
@@ -35,7 +35,7 @@ type Solution struct {
 	//length   int
 }
 
-func Constructor(head *ListNode382) Solution {
+func Constructor382(head *ListNode382) Solution {
 	//count := 0
 	//tmp := head
 	//for tmp != nil {
