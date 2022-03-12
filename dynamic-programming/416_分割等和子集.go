@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/math"
+	"fmt"
+)
 
 func main() {
 	nums := []int{1, 2, 3, 5}
@@ -18,6 +21,7 @@ func main() {
 }
 
 func canPartition(nums []int) bool {
+	n := len(nums)
 	sum := 0
 	for _, num := range nums {
 		sum += num
@@ -25,18 +29,11 @@ func canPartition(nums []int) bool {
 	if sum%2 == 1 {
 		return false
 	}
-	var max func(int, int) int
-	max = func(x, y int) int {
-		if x > y {
-			return x
-		}
-		return y
-	}
 	target := sum / 2
 	dp := make([]int, target+1)
-	for i := 0; i < len(nums); i++ {
+	for i := 0; i < n; i++ {
 		for j := target; j >= nums[i]; j-- {
-			dp[j] = max(dp[j], dp[j-nums[i]]+nums[i])
+			dp[j] = Max(dp[j], dp[j-nums[i]]+nums[i])
 		}
 	}
 	return dp[target] == target
