@@ -20,7 +20,7 @@ type MyLinkedList struct {
 }
 
 func main() {
-	list := Constructor()
+	list := Constructor707()
 	list.AddAtHead(1)
 	list.AddAtTail(3)
 	list.AddAtIndex(1, 2)
@@ -29,7 +29,7 @@ func main() {
 	fmt.Println(list.Get(1))
 }
 
-func Constructor() MyLinkedList {
+func Constructor707() MyLinkedList {
 	fake := &Node{Val: -1}
 	return MyLinkedList{fake}
 }
