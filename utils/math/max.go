@@ -10,11 +10,23 @@
 
 package math
 
-func Max(args ...int) (ans int) {
-	ans = args[0]
-	for _, arg := range args[1:] {
-		if arg > ans {
-			ans = arg
+import "math"
+
+func Max(args ...interface{}) (ans int) {
+	ans = math.MinInt64
+	for _, arg := range args {
+		switch arg.(type) {
+		case []int:
+			for i := 0; i < len(arg.([]int)); i++ {
+				if arg.([]int)[i] > ans {
+					ans = arg.([]int)[i]
+				}
+			}
+			return
+		case int:
+			if arg.(int) > ans {
+				ans = arg.(int)
+			}
 		}
 	}
 	return
