@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/multiway-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &Node590{1, []*Node590{{3, []*Node590{{5, []*Node590{}}, {6, []*Node590{}}}}, {2, []*Node590{}}, {4, []*Node590{}}}}
+	root := &Node{Val: 1, Children: []*Node{{3, []*Node{{5, []*Node{}}, {6, []*Node{}}}}, {2, []*Node{}}, {4, []*Node{}}}}
 	fmt.Println(postorder(root))
 }
 
-func postorder(root *Node590) (ans []int) {
+func postorder(root *Node) (ans []int) {
 	// 迭代
 	if root == nil {
 		return
@@ -29,7 +30,7 @@ func postorder(root *Node590) (ans []int) {
 	stack.PushBack(root)
 
 	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*Node590)
+		node := stack.Remove(stack.Back()).(*Node)
 		ans = append(ans, node.Val)
 		for i := 0; i < len(node.Children); i++ {
 			stack.PushBack(node.Children[i])
@@ -45,8 +46,8 @@ func postorder(root *Node590) (ans []int) {
 	//if root == nil {
 	//	return
 	//}
-	//var post func(node *Node590)
-	//post = func(node *Node590) {
+	//var post func(node *Node)
+	//post = func(node *Node) {
 	//	for _, child := range node.Children {
 	//		post(child)
 	//	}
@@ -54,9 +55,4 @@ func postorder(root *Node590) (ans []int) {
 	//}
 	//post(root)
 	//return
-}
-
-type Node590 struct {
-	Val      int
-	Children []*Node590
 }
