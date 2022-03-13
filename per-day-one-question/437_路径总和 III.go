@@ -10,48 +10,53 @@
 
 package main
 
-import "fmt"
-
-type TreeNode437 struct {
-	Val   int
-	Left  *TreeNode437
-	Right *TreeNode437
-}
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	treeNode9 := TreeNode437{1, nil, nil}
-	treeNode8 := TreeNode437{-2, nil, nil}
-	treeNode7 := TreeNode437{3, nil, nil}
-	treeNode6 := TreeNode437{11, nil, nil}
-	treeNode5 := TreeNode437{2, nil, &treeNode9}
-	treeNode4 := TreeNode437{3, &treeNode7, &treeNode8}
-	treeNode3 := TreeNode437{-3, nil, &treeNode6}
-	treeNode2 := TreeNode437{5, &treeNode4, &treeNode5}
-	treeNode1 := TreeNode437{10, &treeNode2, &treeNode3}
-
-	root := &treeNode1
-	fmt.Println(pathSum(root, 8))
+	root := NewTreeNode([]int{10, 5, -3, 3, 2, -1, 11, 3, -2, -1, 1})
+	targetSum := 8
+	fmt.Println(pathSum(root, targetSum))
 }
 
-func rootSum(root *TreeNode437, targetSum int) (res int) {
-	if root == nil {
+func pathSum(root *TreeNode, targetSum int) (ans int) {
+	preSum := map[int64]int{0: 1}
+	var dfs func(node *TreeNode, cur int64)
+	dfs = func(node *TreeNode, cur int64) {
+		if node == nil {
+			return
+		}
+		cur += int64(node.Val)
+		ans += preSum[cur-int64(targetSum)]
+		preSum[cur]++
+		dfs(node.Left, cur)
+		dfs(node.Right, cur)
+		preSum[cur]--
 		return
 	}
-	val := root.Val
-	if val == targetSum {
-		res++
-	}
-	res += rootSum(root.Left, targetSum-val)
-	res += rootSum(root.Right, targetSum-val)
+	dfs(root, 0)
 	return
-}
 
-func pathSum(root *TreeNode437, targetSum int) int {
-	if root == nil {
-		return 0
-	}
-	res := rootSum(root, targetSum)
-	res += pathSum(root.Left, targetSum)
-	res += pathSum(root.Right, targetSum)
-	return res
+	//var rootSum func(root *TreeNode, targetSum int) int
+	//rootSum = func(root *TreeNode, targetSum int) (res int) {
+	//	if root == nil {
+	//		return
+	//	}
+	//	val := root.Val
+	//	if val == targetSum {
+	//		res++
+	//	}
+	//	res += rootSum(root.Left, targetSum-val)
+	//	res += rootSum(root.Right, targetSum-val)
+	//	return
+	//}
+	//if root == nil {
+	//	return 0
+	//}
+	//res := rootSum(root, targetSum)
+	//res += pathSum(root.Left, targetSum)
+	//res += pathSum(root.Right, targetSum)
+	//return res
 }
