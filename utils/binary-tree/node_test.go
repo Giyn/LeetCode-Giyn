@@ -15,6 +15,6 @@ import (
 )
 
 func TestNewTreeNode(t *testing.T) {
-	head := NewTreeNode([]int{1, 3, 2, 5, 3, -1, 9})
+	head := NewTreeNode([]int{1, 2, 3, 4, -1, 5, 6, -1, -1, 7})
 	PrintBinaryTree(head)
 }
