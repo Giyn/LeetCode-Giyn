@@ -10,18 +10,19 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+)
 
 func main() {
-	root := &TreeNode1038{4, &TreeNode1038{1, &TreeNode1038{0, nil, nil}, &TreeNode1038{2, nil, &TreeNode1038{3, nil, nil}}}, &TreeNode1038{6, &TreeNode1038{5, nil, nil}, &TreeNode1038{7, nil, &TreeNode1038{8, nil, nil}}}}
-	res := bstToGst(root)
-	fmt.Println(res.Val)
+	root := NewTreeNode([]int{4, 1, 6, 0, 2, 5, 7, -1, -1, -1, 3, -1, -1, -1, 8})
+	PrintBinaryTree(bstToGst(root))
 }
 
-func bstToGst(root *TreeNode1038) *TreeNode1038 {
+func bstToGst(root *TreeNode) *TreeNode {
 	var pre int
-	var traversal func(cur *TreeNode1038)
-	traversal = func(cur *TreeNode1038) {
+	var traversal func(cur *TreeNode)
+	traversal = func(cur *TreeNode) {
 		if cur == nil {
 			return
 		}
@@ -32,10 +33,4 @@ func bstToGst(root *TreeNode1038) *TreeNode1038 {
 	}
 	traversal(root)
 	return root
-}
-
-type TreeNode1038 struct {
-	Val   int
-	Left  *TreeNode1038
-	Right *TreeNode1038
 }
