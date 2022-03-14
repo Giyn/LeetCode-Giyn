@@ -11,17 +11,16 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
-	"fmt"
 )
 
 func main() {
-	root := &TreeNode538{4, &TreeNode538{1, &TreeNode538{0, nil, nil}, &TreeNode538{2, nil, &TreeNode538{3, nil, nil}}}, &TreeNode538{6, &TreeNode538{5, nil, nil}, &TreeNode538{7, nil, &TreeNode538{8, nil, nil}}}}
-	res := convertBST(root)
-	fmt.Println(res.Val)
+	root := NewTreeNode([]int{4, 1, 6, 0, 2, 5, 7, -1, -1, -1, 3, -1, -1, -1, 8})
+	PrintBinaryTree(convertBST(root))
 }
 
-func convertBST(root *TreeNode538) *TreeNode538 {
+func convertBST(root *TreeNode) *TreeNode {
 	// 迭代
 	var pre int
 	stack := list.New()
@@ -31,7 +30,7 @@ func convertBST(root *TreeNode538) *TreeNode538 {
 			stack.PushBack(cur)
 			cur = cur.Right
 		} else {
-			cur = stack.Remove(stack.Back()).(*TreeNode538)
+			cur = stack.Remove(stack.Back()).(*TreeNode)
 			cur.Val += pre
 			pre = cur.Val
 			cur = cur.Left
@@ -41,8 +40,8 @@ func convertBST(root *TreeNode538) *TreeNode538 {
 
 	// 递归
 	//var pre int
-	//var traversal func(cur *TreeNode538)
-	//traversal = func(cur *TreeNode538) {
+	//var traversal func(cur *TreeNode)
+	//traversal = func(cur *TreeNode) {
 	//	if cur == nil {
 	//		return
 	//	}
@@ -53,10 +52,4 @@ func convertBST(root *TreeNode538) *TreeNode538 {
 	//}
 	//traversal(root)
 	//return root
-}
-
-type TreeNode538 struct {
-	Val   int
-	Left  *TreeNode538
-	Right *TreeNode538
 }
