@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils"
+	"fmt"
+)
 
 func main() {
 	s := "abcdefg"
@@ -25,16 +28,8 @@ func reverseLeftWords(s string, n int) string {
 
 	// 不开新空间
 	b := []byte(s)
-	reverse058(&b, 0, n-1)
-	reverse058(&b, n, len(b)-1)
-	reverse058(&b, 0, len(b)-1)
+	Reverse(b, 0, n-1)
+	Reverse(b, n, len(b)-1)
+	Reverse(b, 0, len(b)-1)
 	return string(b)
-}
-
-func reverse058(b *[]byte, left, right int) {
-	for left < right {
-		(*b)[left], (*b)[right] = (*b)[right], (*b)[left]
-		left++
-		right--
-	}
 }

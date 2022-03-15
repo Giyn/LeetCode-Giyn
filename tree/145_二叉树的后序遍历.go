@@ -11,13 +11,14 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils"
 	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode{1, nil, &TreeNode{2, &TreeNode{3, nil, nil}, nil}}
+	root := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 	fmt.Println(postorderTraversal(root))
 }
 
@@ -38,7 +39,7 @@ func postorderTraversal(root *TreeNode) (ans []int) {
 			stack.PushBack(node.Right)
 		}
 	}
-	reverse145(ans)
+	Reverse(ans, 0, len(ans)-1)
 	return
 	//var postorder func(node *TreeNode)
 	//postorder = func(node *TreeNode) {
@@ -51,13 +52,4 @@ func postorderTraversal(root *TreeNode) (ans []int) {
 	//}
 	//postorder(root)
 	//return
-}
-
-func reverse145(s []int) {
-	left, right := 0, len(s)-1
-	for left < right {
-		s[left], s[right] = s[right], s[left]
-		left++
-		right--
-	}
 }

@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils"
+	"fmt"
+)
 
 func main() {
 	s := "  Bob    Loves  Alice!   "
@@ -39,23 +42,15 @@ func reverseWords(s string) string {
 	} else {
 		b = b[:slowIndex]
 	}
-	reverse151(&b, 0, len(b)-1)
+	Reverse(b, 0, len(b)-1)
 	i := 0
 	for i < len(b) {
 		j := i
 		for ; j < len(b) && b[j] != ' '; j++ {
 		}
-		reverse151(&b, i, j-1)
+		Reverse(b, i, j-1)
 		i = j
 		i++
 	}
 	return string(b)
-}
-
-func reverse151(b *[]byte, left, right int) {
-	for left < right {
-		(*b)[left], (*b)[right] = (*b)[right], (*b)[left]
-		left++
-		right--
-	}
 }
