@@ -11,18 +11,19 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 	"strconv"
 )
 
 func main() {
-	root := &TreeNode257{1, &TreeNode257{2, nil, &TreeNode257{5, nil, nil}}, &TreeNode257{3, nil, nil}}
+	root := &TreeNode{1, &TreeNode{2, nil, &TreeNode{5, nil, nil}}, &TreeNode{3, nil, nil}}
 	fmt.Println(binaryTreePaths(root))
 }
 
-func binaryTreePaths(root *TreeNode257) (ans []string) {
-	var travel func(node *TreeNode257, s string)
-	travel = func(node *TreeNode257, s string) {
+func binaryTreePaths(root *TreeNode) (ans []string) {
+	var travel func(node *TreeNode, s string)
+	travel = func(node *TreeNode, s string) {
 		if node.Left == nil && node.Right == nil {
 			v := s + strconv.Itoa(node.Val)
 			ans = append(ans, v)
@@ -38,10 +39,4 @@ func binaryTreePaths(root *TreeNode257) (ans []string) {
 	}
 	travel(root, "")
 	return
-}
-
-type TreeNode257 struct {
-	Val   int
-	Left  *TreeNode257
-	Right *TreeNode257
 }

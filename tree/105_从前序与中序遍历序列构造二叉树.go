@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
 	preorder := []int{3, 9, 20, 15, 7}
@@ -19,14 +22,14 @@ func main() {
 	fmt.Println(root.Val)
 }
 
-func buildTreePreIn(preorder []int, inorder []int) *TreeNode105 {
-	var dfs func([]int, []int) *TreeNode105
-	dfs = func(preorder []int, inorder []int) *TreeNode105 {
+func buildTreePreIn(preorder []int, inorder []int) *TreeNode {
+	var dfs func([]int, []int) *TreeNode
+	dfs = func(preorder []int, inorder []int) *TreeNode {
 		if len(preorder) == 0 {
 			return nil
 		}
 		rootVal := preorder[0]
-		root := &TreeNode105{rootVal, nil, nil}
+		root := &TreeNode{rootVal, nil, nil}
 		if len(preorder) == 1 {
 			return root
 		}
@@ -54,10 +57,4 @@ func buildTreePreIn(preorder []int, inorder []int) *TreeNode105 {
 		return nil
 	}
 	return dfs(preorder, inorder)
-}
-
-type TreeNode105 struct {
-	Val   int
-	Left  *TreeNode105
-	Right *TreeNode105
 }

@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode094{1, nil, &TreeNode094{2, &TreeNode094{3, nil, nil}, nil}}
+	root := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 	fmt.Println(inorderTraversal(root))
 }
 
-func inorderTraversal(root *TreeNode094) (ans []int) {
+func inorderTraversal(root *TreeNode) (ans []int) {
 	stack := list.New()
 	cur := root
 	for cur != nil || stack.Len() != 0 {
@@ -28,14 +29,14 @@ func inorderTraversal(root *TreeNode094) (ans []int) {
 			stack.PushBack(cur)
 			cur = cur.Left
 		} else {
-			cur = stack.Remove(stack.Back()).(*TreeNode094)
+			cur = stack.Remove(stack.Back()).(*TreeNode)
 			ans = append(ans, cur.Val)
 			cur = cur.Right
 		}
 	}
 	return
-	//var inorder func(node *TreeNode094)
-	//inorder = func(node *TreeNode094) {
+	//var inorder func(node *TreeNode)
+	//inorder = func(node *TreeNode) {
 	//	if node == nil {
 	//		return
 	//	}
@@ -45,10 +46,4 @@ func inorderTraversal(root *TreeNode094) (ans []int) {
 	//}
 	//inorder(root)
 	//return
-}
-
-type TreeNode094 struct {
-	Val   int
-	Left  *TreeNode094
-	Right *TreeNode094
 }

@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
 	nums := []int{-10, -3, 0, 5, 9}
@@ -18,11 +21,11 @@ func main() {
 	fmt.Println(root.Val)
 }
 
-func sortedArrayToBST(nums []int) *TreeNode108 {
+func sortedArrayToBST(nums []int) *TreeNode {
 	if len(nums) == 0 {
 		return nil
 	}
-	root := &TreeNode108{}
+	root := &TreeNode{}
 	if len(nums) == 1 {
 		root.Val = nums[0]
 		return root
@@ -32,10 +35,4 @@ func sortedArrayToBST(nums []int) *TreeNode108 {
 	root.Left = sortedArrayToBST(nums[:middleIndex])
 	root.Right = sortedArrayToBST(nums[middleIndex+1:])
 	return root
-}
-
-type TreeNode108 struct {
-	Val   int
-	Left  *TreeNode108
-	Right *TreeNode108
 }

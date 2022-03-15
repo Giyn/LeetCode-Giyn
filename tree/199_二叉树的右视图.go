@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode199{1, &TreeNode199{2, nil, &TreeNode199{5, nil, nil}}, &TreeNode199{3, nil, &TreeNode199{4, nil, nil}}}
+	root := &TreeNode{1, &TreeNode{2, nil, &TreeNode{5, nil, nil}}, &TreeNode{3, nil, &TreeNode{4, nil, nil}}}
 	fmt.Println(rightSideView(root))
 }
 
-func rightSideView(root *TreeNode199) (ans []int) {
+func rightSideView(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
@@ -30,7 +31,7 @@ func rightSideView(root *TreeNode199) (ans []int) {
 		var tmp []int
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode199)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			if node.Left != nil {
 				queue.PushBack(node.Left)
 			}
@@ -42,10 +43,4 @@ func rightSideView(root *TreeNode199) (ans []int) {
 		ans = append(ans, tmp[len(tmp)-1])
 	}
 	return
-}
-
-type TreeNode199 struct {
-	Val   int
-	Left  *TreeNode199
-	Right *TreeNode199
 }

@@ -11,6 +11,7 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 )
 
@@ -20,11 +21,11 @@ func main() {
 	fmt.Println(root.Val)
 }
 
-func constructMaximumBinaryTree(nums []int) *TreeNode654 {
+func constructMaximumBinaryTree(nums []int) *TreeNode {
 	if len(nums) == 0 {
 		return nil
 	}
-	root := &TreeNode654{}
+	root := &TreeNode{}
 	if len(nums) == 1 {
 		root.Val = nums[0]
 		return root
@@ -35,12 +36,6 @@ func constructMaximumBinaryTree(nums []int) *TreeNode654 {
 	root.Right = constructMaximumBinaryTree(nums[maxIndex+1:])
 
 	return root
-}
-
-type TreeNode654 struct {
-	Val   int
-	Left  *TreeNode654
-	Right *TreeNode654
 }
 
 func max654(nums []int) (maxIndex int) {

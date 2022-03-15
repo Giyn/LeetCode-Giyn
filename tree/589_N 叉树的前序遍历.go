@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/multiway-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &Node589{1, []*Node589{{3, []*Node589{{5, []*Node589{}}, {6, []*Node589{}}}}, {2, []*Node589{}}, {4, []*Node589{}}}}
+	root := &Node{1, []*Node{{3, []*Node{{5, []*Node{}}, {6, []*Node{}}}}, {2, []*Node{}}, {4, []*Node{}}}}
 	fmt.Println(preorder(root))
 }
 
-func preorder(root *Node589) (ans []int) {
+func preorder(root *Node) (ans []int) {
 	// 迭代
 	if root == nil {
 		return
@@ -29,7 +30,7 @@ func preorder(root *Node589) (ans []int) {
 	stack.PushBack(root)
 
 	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*Node589)
+		node := stack.Remove(stack.Back()).(*Node)
 		for i := len(node.Children) - 1; i >= 0; i-- {
 			stack.PushBack(node.Children[i])
 		}
@@ -41,8 +42,8 @@ func preorder(root *Node589) (ans []int) {
 	//if root == nil {
 	//	return
 	//}
-	//var pre func(node *Node589)
-	//pre = func(node *Node589) {
+	//var pre func(node *Node)
+	//pre = func(node *Node) {
 	//	ans = append(ans, node.Val)
 	//	for _, child := range node.Children {
 	//		pre(child)
@@ -50,9 +51,4 @@ func preorder(root *Node589) (ans []int) {
 	//}
 	//pre(root)
 	//return
-}
-
-type Node589 struct {
-	Val      int
-	Children []*Node589
 }

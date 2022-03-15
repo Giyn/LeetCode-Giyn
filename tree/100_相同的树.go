@@ -11,17 +11,18 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	p := &TreeNode100{1, &TreeNode100{1, nil, nil}, nil}
-	q := &TreeNode100{1, nil, &TreeNode100{1, nil, nil}}
+	p := &TreeNode{1, &TreeNode{1, nil, nil}, nil}
+	q := &TreeNode{1, nil, &TreeNode{1, nil, nil}}
 	fmt.Println(isSameTree(p, q))
 }
 
-func isSameTree(p *TreeNode100, q *TreeNode100) bool {
+func isSameTree(p *TreeNode, q *TreeNode) bool {
 	// 迭代
 	if p == nil && q == nil {
 		return true
@@ -35,7 +36,7 @@ func isSameTree(p *TreeNode100, q *TreeNode100) bool {
 	queue2.PushBack(q)
 
 	for queue1.Len() > 0 && queue2.Len() > 0 {
-		node1, node2 := queue1.Remove(queue1.Front()).(*TreeNode100), queue2.Remove(queue2.Front()).(*TreeNode100)
+		node1, node2 := queue1.Remove(queue1.Front()).(*TreeNode), queue2.Remove(queue2.Front()).(*TreeNode)
 		if node1.Val != node2.Val {
 			return false
 		}
@@ -73,10 +74,4 @@ func isSameTree(p *TreeNode100, q *TreeNode100) bool {
 	//	return false
 	//}
 	//return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
-}
-
-type TreeNode100 struct {
-	Val   int
-	Left  *TreeNode100
-	Right *TreeNode100
 }

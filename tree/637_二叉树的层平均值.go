@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode637{3, &TreeNode637{9, nil, nil}, &TreeNode637{20, &TreeNode637{15, nil, nil}, &TreeNode637{7, nil, nil}}}
+	root := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
 	fmt.Println(averageOfLevels(root))
 }
 
-func averageOfLevels(root *TreeNode637) (ans []float64) {
+func averageOfLevels(root *TreeNode) (ans []float64) {
 	if root == nil {
 		return
 	}
@@ -31,7 +32,7 @@ func averageOfLevels(root *TreeNode637) (ans []float64) {
 		sum := 0.0
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode637)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			if node.Left != nil {
 				queue.PushBack(node.Left)
 			}
@@ -46,10 +47,4 @@ func averageOfLevels(root *TreeNode637) (ans []float64) {
 		ans = append(ans, sum/float64(len(tmp)))
 	}
 	return
-}
-
-type TreeNode637 struct {
-	Val   int
-	Left  *TreeNode637
-	Right *TreeNode637
 }

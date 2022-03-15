@@ -10,17 +10,20 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode669{3, &TreeNode669{0, nil, &TreeNode669{2, &TreeNode669{1, nil, nil}, nil}}, &TreeNode669{4, nil, nil}}
+	root := &TreeNode{3, &TreeNode{0, nil, &TreeNode{2, &TreeNode{1, nil, nil}, nil}}, &TreeNode{4, nil, nil}}
 	low := 1
 	high := 3
 	res := trimBST(root, low, high)
 	fmt.Println(res.Left.Val)
 }
 
-func trimBST(root *TreeNode669, low int, high int) *TreeNode669 {
+func trimBST(root *TreeNode, low int, high int) *TreeNode {
 	if root == nil {
 		return nil
 	}
@@ -33,10 +36,4 @@ func trimBST(root *TreeNode669, low int, high int) *TreeNode669 {
 	root.Left = trimBST(root.Left, low, high)
 	root.Right = trimBST(root.Right, low, high)
 	return root
-}
-
-type TreeNode669 struct {
-	Val   int
-	Left  *TreeNode669
-	Right *TreeNode669
 }

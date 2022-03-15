@@ -11,17 +11,18 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 	"math"
 )
 
 func main() {
-	root := &TreeNode515{1, &TreeNode515{3, &TreeNode515{5, nil, nil}, &TreeNode515{3, nil, nil}}, &TreeNode515{2, nil, &TreeNode515{9, nil, nil}}}
+	root := &TreeNode{1, &TreeNode{3, &TreeNode{5, nil, nil}, &TreeNode{3, nil, nil}}, &TreeNode{2, nil, &TreeNode{9, nil, nil}}}
 	fmt.Println(largestValues(root))
 }
 
-func largestValues(root *TreeNode515) (ans []int) {
+func largestValues(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
@@ -31,7 +32,7 @@ func largestValues(root *TreeNode515) (ans []int) {
 		var tmp []int
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode515)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			if node.Left != nil {
 				queue.PushBack(node.Left)
 			}
@@ -49,10 +50,4 @@ func largestValues(root *TreeNode515) (ans []int) {
 		ans = append(ans, max)
 	}
 	return
-}
-
-type TreeNode515 struct {
-	Val   int
-	Left  *TreeNode515
-	Right *TreeNode515
 }

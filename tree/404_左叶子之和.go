@@ -10,15 +10,18 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode404{}
-	//root := &TreeNode404{1, &TreeNode404{2, &TreeNode404{4, nil, nil}, &TreeNode404{5, nil, nil}}, &TreeNode404{3, nil, nil}}
+	root := &TreeNode{}
+	//root := &TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{5, nil, nil}}, &TreeNode{3, nil, nil}}
 	fmt.Println(sumOfLeftLeaves(root))
 }
 
-func sumOfLeftLeaves(root *TreeNode404) (ans int) {
+func sumOfLeftLeaves(root *TreeNode) (ans int) {
 	if root == nil {
 		return
 	}
@@ -26,10 +29,4 @@ func sumOfLeftLeaves(root *TreeNode404) (ans int) {
 		ans += root.Left.Val
 	}
 	return ans + sumOfLeftLeaves(root.Left) + sumOfLeftLeaves(root.Right)
-}
-
-type TreeNode404 struct {
-	Val   int
-	Left  *TreeNode404
-	Right *TreeNode404
 }

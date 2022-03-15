@@ -11,21 +11,22 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode501{1, nil, &TreeNode501{2, &TreeNode501{2, nil, nil}, nil}}
+	root := &TreeNode{1, nil, &TreeNode{2, &TreeNode{2, nil, nil}, nil}}
 	fmt.Println(findMode(root))
 }
 
-func findMode(root *TreeNode501) (ans []int) {
+func findMode(root *TreeNode) (ans []int) {
 	// 递归
 	curCount := 0
 	maxCount := 0
-	var pre *TreeNode501
-	var traversal func(node *TreeNode501)
-	traversal = func(node *TreeNode501) {
+	var pre *TreeNode
+	var traversal func(node *TreeNode)
+	traversal = func(node *TreeNode) {
 		if node == nil {
 			return
 		}
@@ -58,7 +59,7 @@ func findMode(root *TreeNode501) (ans []int) {
 	//		stack.PushBack(cur)
 	//		cur = cur.Left
 	//	} else {
-	//		cur = stack.Remove(stack.Back()).(*TreeNode501)
+	//		cur = stack.Remove(stack.Back()).(*TreeNode)
 	//		// 判断是否有新的数字
 	//		if cur.Val == curVal {
 	//			curCount++
@@ -77,10 +78,4 @@ func findMode(root *TreeNode501) (ans []int) {
 	//	}
 	//}
 	//return
-}
-
-type TreeNode501 struct {
-	Val   int
-	Left  *TreeNode501
-	Right *TreeNode501
 }

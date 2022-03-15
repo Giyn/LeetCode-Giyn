@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode144{1, nil, &TreeNode144{2, &TreeNode144{3, nil, nil}, nil}}
+	root := &TreeNode{1, nil, &TreeNode{2, &TreeNode{3, nil, nil}, nil}}
 	fmt.Println(preorderTraversal(root))
 }
 
-func preorderTraversal(root *TreeNode144) (ans []int) {
+func preorderTraversal(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
@@ -28,7 +29,7 @@ func preorderTraversal(root *TreeNode144) (ans []int) {
 	stack.PushBack(root)
 
 	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*TreeNode144)
+		node := stack.Remove(stack.Back()).(*TreeNode)
 		ans = append(ans, node.Val)
 		if node.Right != nil {
 			stack.PushBack(node.Right)
@@ -40,9 +41,9 @@ func preorderTraversal(root *TreeNode144) (ans []int) {
 	return
 }
 
-//func preorderTraversal(root *TreeNode144) (ans []int) {
-//	var preorder func(node *TreeNode144)
-//	preorder = func(node *TreeNode144) {
+//func preorderTraversal(root *TreeNode) (ans []int) {
+//	var preorder func(node *TreeNode)
+//	preorder = func(node *TreeNode) {
 //		if node == nil {
 //			return
 //		}
@@ -53,9 +54,3 @@ func preorderTraversal(root *TreeNode144) (ans []int) {
 //	preorder(root)
 //	return
 //}
-
-type TreeNode144 struct {
-	Val   int
-	Left  *TreeNode144
-	Right *TreeNode144
-}

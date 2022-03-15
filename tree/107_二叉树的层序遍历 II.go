@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode107{3, &TreeNode107{9, nil, nil}, &TreeNode107{20, &TreeNode107{15, nil, nil}, &TreeNode107{7, nil, nil}}}
+	root := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
 	fmt.Println(levelOrderBottom(root))
 }
 
-func levelOrderBottom(root *TreeNode107) (ans [][]int) {
+func levelOrderBottom(root *TreeNode) (ans [][]int) {
 	if root == nil {
 		return
 	}
@@ -30,7 +31,7 @@ func levelOrderBottom(root *TreeNode107) (ans [][]int) {
 		var tmp []int
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode107)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			if node.Left != nil {
 				queue.PushBack(node.Left)
 			}
@@ -45,10 +46,4 @@ func levelOrderBottom(root *TreeNode107) (ans [][]int) {
 		ans[i], ans[len(ans)-1-i] = ans[len(ans)-1-i], ans[i]
 	}
 	return
-}
-
-type TreeNode107 struct {
-	Val   int
-	Left  *TreeNode107
-	Right *TreeNode107
 }

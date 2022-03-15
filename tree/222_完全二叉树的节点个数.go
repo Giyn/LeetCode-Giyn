@@ -10,14 +10,17 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode222{1, &TreeNode222{2, &TreeNode222{4, nil, nil}, &TreeNode222{5, nil, nil}}, &TreeNode222{3, &TreeNode222{6, nil, nil}, nil}}
+	root := &TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{5, nil, nil}}, &TreeNode{3, &TreeNode{6, nil, nil}, nil}}
 	fmt.Println(countNodes(root))
 }
 
-func countNodes(root *TreeNode222) int {
+func countNodes(root *TreeNode) int {
 	// 利用完全二叉树特性
 	if root == nil {
 		return 0
@@ -43,10 +46,4 @@ func countNodes(root *TreeNode222) int {
 	//	return 0
 	//}
 	//return 1 + countNodes(root.Left) + countNodes(root.Right)
-}
-
-type TreeNode222 struct {
-	Val   int
-	Left  *TreeNode222
-	Right *TreeNode222
 }

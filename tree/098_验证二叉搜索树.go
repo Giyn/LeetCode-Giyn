@@ -11,19 +11,20 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 	"math"
 )
 
 func main() {
-	//root := &TreeNode098{2, &TreeNode098{1, nil, nil}, &TreeNode098{3, nil, nil}}
-	root := &TreeNode098{5, &TreeNode098{1, nil, nil}, &TreeNode098{4, &TreeNode098{3, nil, nil}, &TreeNode098{6, nil, nil}}}
+	//root := &TreeNode{2, &TreeNode{1, nil, nil}, &TreeNode{3, nil, nil}}
+	root := &TreeNode{5, &TreeNode{1, nil, nil}, &TreeNode{4, &TreeNode{3, nil, nil}, &TreeNode{6, nil, nil}}}
 	fmt.Println(isValidBST(root))
 }
 
-func isValidBST(root *TreeNode098) bool {
+func isValidBST(root *TreeNode) bool {
 	// 迭代
-	var stack []*TreeNode098
+	var stack []*TreeNode
 	inorder := math.MinInt64
 	for len(stack) > 0 || root != nil {
 		for root != nil {
@@ -44,7 +45,7 @@ func isValidBST(root *TreeNode098) bool {
 	//return dfs(root, math.MinInt64, math.MaxInt64)
 }
 
-//func dfs(root *TreeNode098, lower, upper int) bool {
+//func dfs(root *TreeNode, lower, upper int) bool {
 //	if root == nil {
 //		return true
 //	}
@@ -53,9 +54,3 @@ func isValidBST(root *TreeNode098) bool {
 //	}
 //	return dfs(root.Left, lower, root.Val) && dfs(root.Right, root.Val, upper)
 //}
-
-type TreeNode098 struct {
-	Val   int
-	Left  *TreeNode098
-	Right *TreeNode098
-}

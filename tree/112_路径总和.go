@@ -10,15 +10,18 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode112{5, &TreeNode112{4, &TreeNode112{11, &TreeNode112{7, nil, nil}, &TreeNode112{2, nil, nil}}, nil}, &TreeNode112{8, &TreeNode112{13, nil, nil}, &TreeNode112{4, nil, &TreeNode112{1, nil, nil}}}}
+	root := &TreeNode{Val: 5, Left: &TreeNode{Val: 4, Left: &TreeNode{Val: 11, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 2}}}, Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 13}, Right: &TreeNode{Val: 4, Right: &TreeNode{Val: 1}}}}
 	targetSum := 22
 	fmt.Println(hasPathSum(root, targetSum))
 }
 
-func hasPathSum(root *TreeNode112, targetSum int) bool {
+func hasPathSum(root *TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
 	}
@@ -26,10 +29,4 @@ func hasPathSum(root *TreeNode112, targetSum int) bool {
 		return targetSum == root.Val
 	}
 	return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
-}
-
-type TreeNode112 struct {
-	Val   int
-	Left  *TreeNode112
-	Right *TreeNode112
 }

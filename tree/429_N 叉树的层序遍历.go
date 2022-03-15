@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/multiway-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &Node429{1, []*Node429{{3, []*Node429{{5, []*Node429{}}, {6, []*Node429{}}}}, {2, []*Node429{}}, {4, []*Node429{}}}}
+	root := &Node{1, []*Node{{3, []*Node{{5, []*Node{}}, {6, []*Node{}}}}, {2, []*Node{}}, {4, []*Node{}}}}
 	fmt.Println(levelOrderN(root))
 }
 
-func levelOrderN(root *Node429) (ans [][]int) {
+func levelOrderN(root *Node) (ans [][]int) {
 	if root == nil {
 		return
 	}
@@ -30,7 +31,7 @@ func levelOrderN(root *Node429) (ans [][]int) {
 		var tmp []int
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*Node429)
+			node := queue.Remove(queue.Front()).(*Node)
 			for j := 0; j < len(node.Children); j++ {
 				queue.PushBack(node.Children[j])
 			}
@@ -39,9 +40,4 @@ func levelOrderN(root *Node429) (ans [][]int) {
 		ans = append(ans, tmp)
 	}
 	return
-}
-
-type Node429 struct {
-	Val      int
-	Children []*Node429
 }

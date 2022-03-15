@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode110{3, &TreeNode110{9, nil, nil}, &TreeNode110{20, &TreeNode110{15, nil, nil}, &TreeNode110{7, nil, nil}}}
+	root := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
 	fmt.Println(isBalanced(root))
 }
 
-func isBalanced(root *TreeNode110) bool {
+func isBalanced(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
@@ -30,7 +31,7 @@ func isBalanced(root *TreeNode110) bool {
 	return true
 }
 
-func getHeight(node *TreeNode110) int {
+func getHeight(node *TreeNode) int {
 	if node == nil {
 		return 0
 	}
@@ -47,10 +48,4 @@ func getHeight(node *TreeNode110) int {
 	} else {
 		return 1 + Max(leftHeight, rightHeight)
 	}
-}
-
-type TreeNode110 struct {
-	Val   int
-	Left  *TreeNode110
-	Right *TreeNode110
 }

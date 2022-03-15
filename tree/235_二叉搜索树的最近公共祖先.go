@@ -10,17 +10,20 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode235{6, &TreeNode235{2, &TreeNode235{0, nil, nil}, &TreeNode235{4, &TreeNode235{3, nil, nil}, &TreeNode235{5, nil, nil}}}, &TreeNode235{8, &TreeNode235{7, nil, nil}, &TreeNode235{9, nil, nil}}}
+	root := &TreeNode{6, &TreeNode{2, &TreeNode{0, nil, nil}, &TreeNode{4, &TreeNode{3, nil, nil}, &TreeNode{5, nil, nil}}}, &TreeNode{8, &TreeNode{7, nil, nil}, &TreeNode{9, nil, nil}}}
 	p := root.Left
 	q := root.Right
 	res := lowestCommonAncestorBST(root, p, q)
 	fmt.Println(res.Val)
 }
 
-func lowestCommonAncestorBST(root, p, q *TreeNode235) *TreeNode235 {
+func lowestCommonAncestorBST(root, p, q *TreeNode) *TreeNode {
 	// 迭代
 	for root != nil {
 		if root.Val > p.Val && root.Val > q.Val {
@@ -50,10 +53,4 @@ func lowestCommonAncestorBST(root, p, q *TreeNode235) *TreeNode235 {
 	//	}
 	//}
 	//return root
-}
-
-type TreeNode235 struct {
-	Val   int
-	Left  *TreeNode235
-	Right *TreeNode235
 }

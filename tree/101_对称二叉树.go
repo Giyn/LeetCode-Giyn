@@ -11,21 +11,22 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode101{1, &TreeNode101{2, &TreeNode101{3, nil, nil}, &TreeNode101{4, nil, nil}}, &TreeNode101{2, &TreeNode101{4, nil, nil}, &TreeNode101{3, nil, nil}}}
+	root := &TreeNode{1, &TreeNode{2, &TreeNode{3, nil, nil}, &TreeNode{4, nil, nil}}, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{3, nil, nil}}}
 	fmt.Println(isSymmetric(root))
 }
 
-func isSymmetric(root *TreeNode101) bool {
+func isSymmetric(root *TreeNode) bool {
 	// 递归
 	if root == nil {
 		return true
 	}
-	var compare func(left, right *TreeNode101) bool
-	compare = func(left, right *TreeNode101) bool {
+	var compare func(left, right *TreeNode) bool
+	compare = func(left, right *TreeNode) bool {
 		if left == nil && right == nil {
 			return true
 		} else if left == nil || right == nil {
@@ -45,8 +46,8 @@ func isSymmetric(root *TreeNode101) bool {
 	//queue.PushBack(root.Left)
 	//queue.PushBack(root.Right)
 	//for queue.Len() > 0 {
-	//	left := queue.Remove(queue.Front()).(*TreeNode101)
-	//	right := queue.Remove(queue.Front()).(*TreeNode101)
+	//	left := queue.Remove(queue.Front()).(*TreeNode)
+	//	right := queue.Remove(queue.Front()).(*TreeNode)
 	//	if left == nil && right == nil {
 	//		continue
 	//	}
@@ -59,10 +60,4 @@ func isSymmetric(root *TreeNode101) bool {
 	//	queue.PushBack(right.Left)
 	//}
 	//return true
-}
-
-type TreeNode101 struct {
-	Val   int
-	Left  *TreeNode101
-	Right *TreeNode101
 }

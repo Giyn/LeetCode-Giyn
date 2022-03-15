@@ -11,15 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode111{3, &TreeNode111{9, nil, nil}, &TreeNode111{20, &TreeNode111{15, nil, nil}, &TreeNode111{7, nil, nil}}}
+	root := &TreeNode{Val: 3, Left: &TreeNode{Val: 9}, Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15}, Right: &TreeNode{Val: 7}}}
 	fmt.Println(minDepth(root))
 }
 
-func minDepth(root *TreeNode111) int {
+func minDepth(root *TreeNode) int {
 	// 递归
 	if root == nil {
 		return 0
@@ -30,7 +32,7 @@ func minDepth(root *TreeNode111) int {
 	if root.Left == nil && root.Right != nil {
 		return 1 + minDepth(root.Right)
 	}
-	return 1 + min111(minDepth(root.Left), minDepth(root.Right))
+	return 1 + Min(minDepth(root.Left), minDepth(root.Right))
 
 	// 迭代
 	//if root == nil {
@@ -43,7 +45,7 @@ func minDepth(root *TreeNode111) int {
 	//	length := queue.Len()
 	//	depth++
 	//	for i := 0; i < length; i++ {
-	//		node := queue.Remove(queue.Front()).(*TreeNode111)
+	//		node := queue.Remove(queue.Front()).(*TreeNode)
 	//		if node.Left != nil {
 	//			queue.PushBack(node.Left)
 	//		}
@@ -56,17 +58,4 @@ func minDepth(root *TreeNode111) int {
 	//	}
 	//}
 	//return depth
-}
-
-type TreeNode111 struct {
-	Val   int
-	Left  *TreeNode111
-	Right *TreeNode111
-}
-
-func min111(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
 }

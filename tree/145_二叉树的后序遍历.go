@@ -11,16 +11,17 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode145{1, nil, &TreeNode145{2, &TreeNode145{3, nil, nil}, nil}}
+	root := &TreeNode{1, nil, &TreeNode{2, &TreeNode{3, nil, nil}, nil}}
 	fmt.Println(postorderTraversal(root))
 }
 
-func postorderTraversal(root *TreeNode145) (ans []int) {
+func postorderTraversal(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
@@ -28,7 +29,7 @@ func postorderTraversal(root *TreeNode145) (ans []int) {
 	stack.PushBack(root)
 
 	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*TreeNode145)
+		node := stack.Remove(stack.Back()).(*TreeNode)
 		ans = append(ans, node.Val)
 		if node.Left != nil {
 			stack.PushBack(node.Left)
@@ -39,8 +40,8 @@ func postorderTraversal(root *TreeNode145) (ans []int) {
 	}
 	reverse145(ans)
 	return
-	//var postorder func(node *TreeNode145)
-	//postorder = func(node *TreeNode145) {
+	//var postorder func(node *TreeNode)
+	//postorder = func(node *TreeNode) {
 	//	if node == nil {
 	//		return
 	//	}
@@ -50,12 +51,6 @@ func postorderTraversal(root *TreeNode145) (ans []int) {
 	//}
 	//postorder(root)
 	//return
-}
-
-type TreeNode145 struct {
-	Val   int
-	Left  *TreeNode145
-	Right *TreeNode145
 }
 
 func reverse145(s []int) {

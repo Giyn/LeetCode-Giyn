@@ -10,16 +10,19 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode450{5, &TreeNode450{3, &TreeNode450{2, nil, nil}, &TreeNode450{4, nil, nil}}, &TreeNode450{6, nil, &TreeNode450{7, nil, nil}}}
+	root := &TreeNode{5, &TreeNode{3, &TreeNode{2, nil, nil}, &TreeNode{4, nil, nil}}, &TreeNode{6, nil, &TreeNode{7, nil, nil}}}
 	key := 3
 	res := deleteNode(root, key)
 	fmt.Println(res.Left.Val)
 }
 
-func deleteNode(root *TreeNode450, key int) *TreeNode450 {
+func deleteNode(root *TreeNode, key int) *TreeNode {
 	// 递归
 	if root == nil {
 		return root
@@ -47,10 +50,4 @@ func deleteNode(root *TreeNode450, key int) *TreeNode450 {
 		root.Right = deleteNode(root.Right, key)
 	}
 	return root
-}
-
-type TreeNode450 struct {
-	Val   int
-	Left  *TreeNode450
-	Right *TreeNode450
 }

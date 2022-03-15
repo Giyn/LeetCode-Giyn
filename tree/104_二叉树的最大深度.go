@@ -11,18 +11,19 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode104{3, &TreeNode104{9, nil, nil}, &TreeNode104{20, &TreeNode104{15, nil, nil}, &TreeNode104{7, nil, nil}}}
+	root := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
 	fmt.Println(maxDepth(root))
 }
 
-func maxDepth(root *TreeNode104) (ans int) {
+func maxDepth(root *TreeNode) (ans int) {
 	// 前序
-	var getDepth func(node *TreeNode104, depth int)
-	getDepth = func(node *TreeNode104, depth int) {
+	var getDepth func(node *TreeNode, depth int)
+	getDepth = func(node *TreeNode, depth int) {
 		if depth > ans {
 			ans = depth
 		}
@@ -51,7 +52,7 @@ func maxDepth(root *TreeNode104) (ans int) {
 	//if root == nil {
 	//	return 0
 	//}
-	//return 1 + max104(maxDepth(root.Left), maxDepth(root.Right))
+	//return 1 + Max(maxDepth(root.Left), maxDepth(root.Right))
 
 	// 层序迭代
 	//if root == nil {
@@ -64,7 +65,7 @@ func maxDepth(root *TreeNode104) (ans int) {
 	//	length := queue.Len()
 	//	depth++
 	//	for i := 0; i < length; i++ {
-	//		node := queue.Remove(queue.Front()).(*TreeNode104)
+	//		node := queue.Remove(queue.Front()).(*TreeNode)
 	//		if node.Left != nil {
 	//			queue.PushBack(node.Left)
 	//		}
@@ -75,16 +76,3 @@ func maxDepth(root *TreeNode104) (ans int) {
 	//}
 	//return depth
 }
-
-type TreeNode104 struct {
-	Val   int
-	Left  *TreeNode104
-	Right *TreeNode104
-}
-
-//func max104(x, y int) int {
-//	if x > y {
-//		return x
-//	}
-//	return y
-//}

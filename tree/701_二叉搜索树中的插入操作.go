@@ -10,18 +10,21 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode701{4, &TreeNode701{2, &TreeNode701{1, nil, nil}, &TreeNode701{3, nil, nil}}, &TreeNode701{7, nil, nil}}
+	root := &TreeNode{4, &TreeNode{2, &TreeNode{1, nil, nil}, &TreeNode{3, nil, nil}}, &TreeNode{7, nil, nil}}
 	res := insertIntoBST(root, 5)
 	fmt.Println(res.Val)
 }
 
-func insertIntoBST(root *TreeNode701, val int) *TreeNode701 {
+func insertIntoBST(root *TreeNode, val int) *TreeNode {
 	// 递归
 	if root == nil {
-		return &TreeNode701{val, nil, nil}
+		return &TreeNode{val, nil, nil}
 	}
 	if root.Val > val {
 		root.Left = insertIntoBST(root.Left, val)
@@ -33,9 +36,9 @@ func insertIntoBST(root *TreeNode701, val int) *TreeNode701 {
 
 	// 迭代
 	//if root == nil {
-	//	return &TreeNode701{val, nil, nil}
+	//	return &TreeNode{val, nil, nil}
 	//}
-	//var pre *TreeNode701
+	//var pre *TreeNode
 	//cur := root
 	//for cur != nil {
 	//	if cur.Val > val {
@@ -47,15 +50,9 @@ func insertIntoBST(root *TreeNode701, val int) *TreeNode701 {
 	//	}
 	//}
 	//if pre.Val > val {
-	//	pre.Left = &TreeNode701{val, nil, nil}
+	//	pre.Left = &TreeNode{val, nil, nil}
 	//} else {
-	//	pre.Right = &TreeNode701{val, nil, nil}
+	//	pre.Right = &TreeNode{val, nil, nil}
 	//}
 	//return root
-}
-
-type TreeNode701 struct {
-	Val   int
-	Left  *TreeNode701
-	Right *TreeNode701
 }

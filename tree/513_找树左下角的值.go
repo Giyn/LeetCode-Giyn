@@ -11,20 +11,21 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"fmt"
 	"math"
 )
 
 func main() {
-	root := &TreeNode513{1, &TreeNode513{2, &TreeNode513{4, nil, nil}, nil}, &TreeNode513{3, &TreeNode513{5, &TreeNode513{7, nil, nil}, nil}, &TreeNode513{6, nil, nil}}}
+	root := &TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, nil}, &TreeNode{3, &TreeNode{5, &TreeNode{7, nil, nil}, nil}, &TreeNode{6, nil, nil}}}
 	fmt.Println(findBottomLeftValue(root))
 }
 
-func findBottomLeftValue(root *TreeNode513) (ans int) {
+func findBottomLeftValue(root *TreeNode) (ans int) {
 	// 递归
 	maxDepth := math.MinInt64
-	var traversal func(node *TreeNode513, depth int)
-	traversal = func(node *TreeNode513, depth int) {
+	var traversal func(node *TreeNode, depth int)
+	traversal = func(node *TreeNode, depth int) {
 		if node.Left == nil && node.Right == nil {
 			if depth > maxDepth {
 				maxDepth = depth
@@ -49,7 +50,7 @@ func findBottomLeftValue(root *TreeNode513) (ans int) {
 	//for queue.Len() > 0 {
 	//	length := queue.Len()
 	//	for i := 0; i < length; i++ {
-	//		node := queue.Remove(queue.Front()).(*TreeNode513)
+	//		node := queue.Remove(queue.Front()).(*TreeNode)
 	//		if i == 0 {
 	//			ans = node.Val
 	//		}
@@ -62,10 +63,4 @@ func findBottomLeftValue(root *TreeNode513) (ans int) {
 	//	}
 	//}
 	//return
-}
-
-type TreeNode513 struct {
-	Val   int
-	Left  *TreeNode513
-	Right *TreeNode513
 }

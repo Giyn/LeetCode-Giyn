@@ -10,14 +10,17 @@
 
 package main
 
-import "container/list"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"container/list"
+)
 
 func main() {
-	root := &TreeNode226{4, &TreeNode226{2, &TreeNode226{1, nil, nil}, &TreeNode226{3, nil, nil}}, &TreeNode226{7, &TreeNode226{6, nil, nil}, &TreeNode226{9, nil, nil}}}
+	root := &TreeNode{4, &TreeNode{2, &TreeNode{1, nil, nil}, &TreeNode{3, nil, nil}}, &TreeNode{7, &TreeNode{6, nil, nil}, &TreeNode{9, nil, nil}}}
 	invertTree(root)
 }
 
-func invertTree(root *TreeNode226) *TreeNode226 {
+func invertTree(root *TreeNode) *TreeNode {
 	// BFS
 	if root == nil {
 		return root
@@ -27,7 +30,7 @@ func invertTree(root *TreeNode226) *TreeNode226 {
 	for queue.Len() > 0 {
 		length := queue.Len()
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode226)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			node.Left, node.Right = node.Right, node.Left
 			if node.Left != nil {
 				queue.PushBack(node.Left)
@@ -46,7 +49,7 @@ func invertTree(root *TreeNode226) *TreeNode226 {
 	//stack := list.New()
 	//stack.PushBack(root)
 	//for stack.Len() > 0 {
-	//	node := stack.Remove(stack.Back()).(*TreeNode226)
+	//	node := stack.Remove(stack.Back()).(*TreeNode)
 	//	node.Left, node.Right = node.Right, node.Left
 	//	if node.Left != nil {
 	//		stack.PushBack(node.Left)
@@ -69,10 +72,4 @@ func invertTree(root *TreeNode226) *TreeNode226 {
 	//	invertTree(root.Right)
 	//}
 	//return root
-}
-
-type TreeNode226 struct {
-	Val   int
-	Left  *TreeNode226
-	Right *TreeNode226
 }

@@ -10,18 +10,21 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode113{5, &TreeNode113{4, &TreeNode113{11, &TreeNode113{7, nil, nil}, &TreeNode113{2, nil, nil}}, nil}, &TreeNode113{8, &TreeNode113{13, nil, nil}, &TreeNode113{4, &TreeNode113{5, nil, nil}, &TreeNode113{1, nil, nil}}}}
+	root := &TreeNode{5, &TreeNode{4, &TreeNode{11, &TreeNode{7, nil, nil}, &TreeNode{2, nil, nil}}, nil}, &TreeNode{8, &TreeNode{13, nil, nil}, &TreeNode{4, &TreeNode{5, nil, nil}, &TreeNode{1, nil, nil}}}}
 	targetSum := 22
 	fmt.Println(pathSum(root, targetSum))
 }
 
-func pathSum(root *TreeNode113, targetSum int) (ans [][]int) {
+func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 	var path []int
-	var dfs func(*TreeNode113, int)
-	dfs = func(node *TreeNode113, remain int) {
+	var dfs func(*TreeNode, int)
+	dfs = func(node *TreeNode, remain int) {
 		if node == nil {
 			return
 		}
@@ -37,10 +40,4 @@ func pathSum(root *TreeNode113, targetSum int) (ans [][]int) {
 	}
 	dfs(root, targetSum)
 	return
-}
-
-type TreeNode113 struct {
-	Val   int
-	Left  *TreeNode113
-	Right *TreeNode113
 }
