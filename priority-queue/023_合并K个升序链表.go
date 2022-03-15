@@ -11,12 +11,13 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/linked-list"
 	"container/heap"
 	"fmt"
 )
 
 func main() {
-	lists := []*ListNode023{{1, &ListNode023{4, &ListNode023{5, nil}}}, {1, &ListNode023{3, &ListNode023{4, nil}}}, {2, &ListNode023{6, nil}}}
+	lists := []*ListNode{{1, &ListNode{Val: 4, Next: &ListNode{Val: 5}}}, {1, &ListNode{Val: 3, Next: &ListNode{Val: 4}}}, {2, &ListNode{Val: 6}}}
 	res := mergeKLists(lists)
 	for res != nil {
 		fmt.Println(res.Val)
@@ -24,7 +25,7 @@ func main() {
 	}
 }
 
-func mergeKLists(lists []*ListNode023) *ListNode023 {
+func mergeKLists(lists []*ListNode) *ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
@@ -34,10 +35,10 @@ func mergeKLists(lists []*ListNode023) *ListNode023 {
 			heap.Push(h, lists[i])
 		}
 	}
-	dummyHead := new(ListNode023)
+	dummyHead := new(ListNode)
 	pre := dummyHead
 	for h.Len() > 0 {
-		tmp := heap.Pop(h).(*ListNode023)
+		tmp := heap.Pop(h).(*ListNode)
 		if tmp.Next != nil {
 			heap.Push(h, tmp.Next)
 		}
@@ -47,15 +48,10 @@ func mergeKLists(lists []*ListNode023) *ListNode023 {
 	return dummyHead.Next
 }
 
-type ListNode023 struct {
-	Val  int
-	Next *ListNode023
-}
-
-type hp023 []*ListNode023
+type hp023 []*ListNode
 
 func (h hp023) Len() int            { return len(h) }
 func (h hp023) Less(i, j int) bool  { return h[i].Val < h[j].Val }
 func (h hp023) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
-func (h *hp023) Push(x interface{}) { *h = append(*h, x.(*ListNode023)) }
+func (h *hp023) Push(x interface{}) { *h = append(*h, x.(*ListNode)) }
 func (h *hp023) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
