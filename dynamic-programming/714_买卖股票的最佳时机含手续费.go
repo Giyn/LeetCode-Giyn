@@ -15,10 +15,10 @@ import "fmt"
 func main() {
 	prices := []int{1, 3, 7, 5, 10, 3}
 	fee := 3
-	fmt.Println(maxProfitWithFee(prices, fee))
+	fmt.Println(maxProfit6(prices, fee))
 }
 
-func maxProfitWithFee(prices []int, fee int) int {
+func maxProfit6(prices []int, fee int) int {
 	max := func(x, y int) int {
 		if x > y {
 			return x

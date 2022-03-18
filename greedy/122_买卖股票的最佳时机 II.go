@@ -14,10 +14,10 @@ import "fmt"
 
 func main() {
 	prices := []int{7, 1, 5, 3, 6, 4}
-	fmt.Println(maxProfit122(prices))
+	fmt.Println(maxProfit2(prices))
 }
 
-func maxProfit122(prices []int) (ans int) {
+func maxProfit2(prices []int) (ans int) {
 	for i := 0; i < len(prices)-1; i++ {
 		if prices[i+1]-prices[i] > 0 {
 			ans += prices[i+1] - prices[i]

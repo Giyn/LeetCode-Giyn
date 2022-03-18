@@ -17,10 +17,10 @@ import (
 
 func main() {
 	prices := []int{7, 1, 5, 3, 6, 4}
-	fmt.Println(maxProfit121(prices))
+	fmt.Println(maxProfit1(prices))
 }
 
-func maxProfit121(prices []int) (ans int) {
+func maxProfit1(prices []int) (ans int) {
 	minPrice := math.MaxInt64
 	for i := 0; i < len(prices); i++ {
 		if prices[i] < minPrice {
