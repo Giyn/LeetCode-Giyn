@@ -1,6 +1,6 @@
 /*
 -------------------------------------
-# @Time    : 2022/3/1 19:26:25
+# @Time    : 2022/3/19 23:27:56
 # @Author  : Giyn
 # @Email   : giyn.jy@gmail.com
 # @File    : 022_括号生成.go
@@ -13,7 +13,7 @@ package main
 import "fmt"
 
 func main() {
-	n := 4
+	n := 3
 	fmt.Println(generateParenthesis(n))
 }
 
