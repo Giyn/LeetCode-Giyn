@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-func TestNewMin(t *testing.T) {
+func TestMin(t *testing.T) {
 	fmt.Println(Min([]int{1, 2, 3, 4, 6}))
 	fmt.Println(Min(1, 2, 3, 4, 6))
 }
