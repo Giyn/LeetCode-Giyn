@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-func TestNewMax(t *testing.T) {
+func TestMax(t *testing.T) {
 	fmt.Println(Max([]int{1, 2, 3, 4, 6}))
 	fmt.Println(Max(1, 2, 3, 4, 6))
 }
