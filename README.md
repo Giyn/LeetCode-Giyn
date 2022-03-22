@@ -23,6 +23,138 @@ func search(nums []int, target int) int {
 
 快指针慢指针或者左指针右指针。
 
+## 二叉树
+
+### 前序遍历
+
+迭代：
+
+```go
+func preorderTraversal(root *TreeNode) (ans []int) {
+	if root == nil {
+		return
+	}
+	stack := []*TreeNode{root}
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		ans = append(ans, node.Val)
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+	}
+	return
+}
+```
+
+递归：
+
+```go
+func preorderTraversal(root *TreeNode) (ans []int) {
+	var preorder func(node *TreeNode)
+	preorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		ans = append(ans, node.Val)
+		preorder(node.Left)
+		preorder(node.Right)
+	}
+	preorder(root)
+	return
+}
+```
+
+### 中序遍历
+
+迭代：
+
+```go
+func inorderTraversal(root *TreeNode) (ans []int) {
+	var stack []*TreeNode
+	cur := root
+	for cur != nil || len(stack) != 0 {
+		if cur != nil {
+			stack = append(stack, cur)
+			cur = cur.Left
+		} else {
+			cur = stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			ans = append(ans, cur.Val)
+			cur = cur.Right
+		}
+	}
+	return
+}
+```
+
+递归：
+
+```go
+func inorderTraversal(root *TreeNode) (ans []int) {
+	var inorder func(node *TreeNode)
+	inorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		inorder(node.Left)
+		ans = append(ans, node.Val)
+		inorder(node.Right)
+	}
+	inorder(root)
+	return
+}
+```
+
+### 后序遍历
+
+迭代：
+
+```go
+func postorderTraversal(root *TreeNode) (ans []int) {
+	if root == nil {
+		return
+	}
+	stack := []*TreeNode{root}
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		ans = append(ans, node.Val)
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+	}
+	Reverse(ans, 0, len(ans)-1)
+	return
+}
+```
+
+递归:
+
+```go
+func postorderTraversal(root *TreeNode) (ans []int) {
+	var postorder func(node *TreeNode)
+	postorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		postorder(node.Left)
+		postorder(node.Right)
+		ans = append(ans, node.Val)
+	}
+	postorder(root)
+	return
+}
+```
+
 ## 动态规划
 
 ![](https://img-blog.csdnimg.cn/20210117171307407.png)
@@ -413,9 +545,9 @@ func Heapify(nums []int, length int) {
 
 步骤：
 
-- 选择一个增量序列 t1，t2，…，tk，其中 ti>tj，tk=1；
-- 按增量序列个数 k，对序列进行 k 趟排序；
-- 每趟排序，根据对应的增量 ti，将待排序列分割成若干长度为 m 的子序列，分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。
+1. 选择一个增量序列 t1，t2，…，tk，其中 ti>tj，tk=1；
+2. 按增量序列个数 k，对序列进行 k 趟排序；
+3. 每趟排序，根据对应的增量 ti，将待排序列分割成若干长度为 m 的子序列，分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。
 
 代码思路：希尔增量一般是 `gap = gap / 2`，只是比普通版插入排序多了一个 for 循环而已。
 
@@ -437,3 +569,131 @@ func ShellSort(nums []int) {
 }
 ```
 
+### 计数排序
+
+计数排序不是基于比较的排序算法，其核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。作为一种线性时间复杂度的排序，计数排序**要求输入的数据必须是有确定范围的整数**。
+
+步骤：
+
+1. 找出待排序的数组中最大和最小的元素；
+2. 统计数组中每个值为 i 的元素出现的次数，存入数组 C 的第 i 项；
+3. 对所有的计数累加（从 C 中的第一个元素开始，每一项和前一项相加）；
+4. 反向填充目标数组：将每个元素i放在新数组的第 C(i) 项，每放一个元素就将 C(i) 减去 1。
+
+![849589-20171015231740840-6968181](https://gitee.com/giyn/image-storage/raw/master/images/849589-20171015231740840-6968181.gif)
+
+```go
+func CountingSort(nums []int) {
+	maxVal := Max(nums)
+	minVal := Min(nums)
+	bucket := make([]int, maxVal-minVal+1)
+	for _, num := range nums {
+		bucket[num-minVal]++
+	}
+	sortedIndex := 0
+	for i := 0; i < maxVal-minVal+1; i++ {
+		for bucket[i] > 0 {
+			nums[sortedIndex] = i + minVal
+			sortedIndex++
+			bucket[i]--
+		}
+	}
+}
+```
+
+### 基数排序
+
+基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。
+
+步骤：
+
+1. 取得数组中的最大数，并取得位数；
+2. nums 为原始数组，从最低位开始取每个位组成 radix 数组；
+3. 对 radix 进行计数排序（利用计数排序适用于小范围数的特点）；
+
+![849589-20171015232453668-1397662527](https://gitee.com/giyn/image-storage/raw/master/images/849589-20171015232453668-1397662527.gif)
+
+```go
+func RadixSort(nums []int) {
+	maxVal := Max(nums)
+	maxBit := 0 // 最大值的位数
+	for maxVal > 0 {
+		maxBit++
+		maxVal /= 10
+	}
+	tmp := make([]int, len(nums))
+	count := new([10]int)
+	for i, radix := 0, 1; i < maxBit; i, radix = i+1, radix*10 {
+		for j := 0; j < 10; j++ {
+			count[j] = 0
+		}
+		for j := 0; j < len(nums); j++ {
+			count[(nums[j]/radix)%10]++
+		}
+		for j := 1; j < 10; j++ {
+			count[j] += count[j-1]
+		}
+		for j := len(nums) - 1; j >= 0; j-- {
+			tmp[count[(nums[j]/radix)%10]-1] = nums[j]
+			count[(nums[j]/radix)%10]--
+		}
+		for j := 0; j < len(nums); j++ {
+			nums[j] = tmp[j]
+		}
+	}
+}
+```
+
+### 桶排序
+
+桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。桶排序（Bucket sort）的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排）。
+
+步骤：
+
+1. 设置一个定量的数组当作空桶；
+2. 遍历输入数据，并且把数据一个一个放到对应的桶里去；
+3. 对每个不是空的桶进行排序；
+4. 从不是空的桶里把排好序的数据拼接起来。 
+
+![image-20220322121117832](https://gitee.com/giyn/image-storage/raw/master/images/image-20220322121117832.png)
+
+```go
+func BucketSort(nums []int) {
+	bucketNum := len(nums) / 2 // 桶数
+	maxVal := Max(nums)
+	buckets := make([][]int, bucketNum)
+	// 分配入桶
+	index := 0
+	for i := 0; i < bucketNum; i++ {
+		// 分配桶 index = value * (n-1) /k
+		index = nums[i] * (bucketNum - 1) / maxVal
+		buckets[index] = append(buckets[index], nums[i])
+	}
+	// 桶内排序
+	tmpPos := 0
+	for i := 0; i < bucketNum; i++ {
+		bucketLen := len(buckets[i])
+		if bucketLen > 0 {
+			sort.Ints(buckets[i])
+			copy(nums[tmpPos:], buckets[i])
+			tmpPos += bucketLen
+		}
+	}
+}
+```
+
+- 稳定：如果 a 原本在 b 前面，而 a=b，排序之后 a 仍然在 b 的前面。
+- 不稳定：如果 a 原本在 b 的前面，而 a=b，排序之后 a 可能会出现在 b 的后面。
+
+| 排序算法 | 平均时间复杂度 | 最好     | 最坏      | 空间复杂度 | 稳定性 |
+| :------- | :------------- | :------- | :-------- | :--------- | :----- |
+| 冒泡排序 | O(n^2)         | O(n)     | O(n^2)    | O(1)       | 稳定   |
+| 快速排序 | O(nlogn)       | O(nlogn) | O(n^2)    | O(logn)    | 不稳定 |
+| 插入排序 | O(n^2)         | O(n)     | O(n^2)    | O(1)       | 稳定   |
+| 希尔排序 | O(n^1.3)       | O(n)     | O(nlog2n) | O(1)       | 不稳定 |
+| 选择排序 | O(n^2)         | O(n^2)   | O(n^2)    | O(1)       | 不稳定 |
+| 堆排序   | O(nlogn)       | O(nlogn) | O(nlogn)  | O(1)       | 不稳定 |
+| 归并排序 | O(nlogn)       | O(nlogn) | O(nlogn)  | O(n)       | 稳定   |
+| 桶排序   | O(n+k)         | O(n+k)   | O(n+k)    | O(n+k)     | 稳定   |
+| 计数排序 | O(n+k)         | O(n+k)   | O(n+k)    | O(k)       | 稳定   |
+| 基数排序 | O(n*k)         | O(n*k)   | O(n*k)    | O(n+k)     | 稳定   |
