@@ -13,7 +13,6 @@ package main
 import (
 	. "LeetCodeGiyn/utils"
 	. "LeetCodeGiyn/utils/binary-tree"
-	"container/list"
 	"fmt"
 )
 
@@ -26,21 +25,22 @@ func postorderTraversal(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
-	stack := list.New()
-	stack.PushBack(root)
+	stack := []*TreeNode{root}
 
-	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*TreeNode)
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
 		ans = append(ans, node.Val)
 		if node.Left != nil {
-			stack.PushBack(node.Left)
+			stack = append(stack, node.Left)
 		}
 		if node.Right != nil {
-			stack.PushBack(node.Right)
+			stack = append(stack, node.Right)
 		}
 	}
 	Reverse(ans, 0, len(ans)-1)
 	return
+
 	//var postorder func(node *TreeNode)
 	//postorder = func(node *TreeNode) {
 	//	if node == nil {
