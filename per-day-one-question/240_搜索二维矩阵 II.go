@@ -17,15 +17,14 @@ func main() {
 	matrix := [][]int{{-5}}
 	//matrix := [][]int{{5},{6}}
 	//matrix := [][]int{{1, 4}, {2, 5}}
-	target := -10
+	target := -5
 	fmt.Println(searchMatrix(matrix, target))
 }
 
 func searchMatrix(matrix [][]int, target int) bool {
-	m, n := len(matrix), len(matrix[0])
-	i, j := 0, n-1
+	i, j := 0, len(matrix[0])-1
 
-	for i < m && j >= 0 {
+	for i < len(matrix) && j >= 0 {
 		if matrix[i][j] == target {
 			return true
 		} else if matrix[i][j] < target {
