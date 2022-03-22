@@ -12,7 +12,6 @@ package main
 
 import (
 	. "LeetCodeGiyn/utils/binary-tree"
-	"container/list"
 	"fmt"
 )
 
@@ -22,19 +21,21 @@ func main() {
 }
 
 func inorderTraversal(root *TreeNode) (ans []int) {
-	stack := list.New()
+	var stack []*TreeNode
 	cur := root
-	for cur != nil || stack.Len() != 0 {
+	for cur != nil || len(stack) != 0 {
 		if cur != nil {
-			stack.PushBack(cur)
+			stack = append(stack, cur)
 			cur = cur.Left
 		} else {
-			cur = stack.Remove(stack.Back()).(*TreeNode)
+			cur = stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
 			ans = append(ans, cur.Val)
 			cur = cur.Right
 		}
 	}
 	return
+
 	//var inorder func(node *TreeNode)
 	//inorder = func(node *TreeNode) {
 	//	if node == nil {
