@@ -18,18 +18,18 @@ import (
 func main() {
 	preorder := []int{3, 9, 20, 15, 7}
 	inorder := []int{9, 3, 15, 20, 7}
-	root := buildTreePreIn(preorder, inorder)
+	root := buildTree(preorder, inorder)
 	fmt.Println(root.Val)
 }
 
-func buildTreePreIn(preorder []int, inorder []int) *TreeNode {
+func buildTree(preorder []int, inorder []int) *TreeNode {
 	var dfs func([]int, []int) *TreeNode
 	dfs = func(preorder []int, inorder []int) *TreeNode {
 		if len(preorder) == 0 {
 			return nil
 		}
 		rootVal := preorder[0]
-		root := &TreeNode{rootVal, nil, nil}
+		root := &TreeNode{Val: rootVal}
 		if len(preorder) == 1 {
 			return root
 		}
