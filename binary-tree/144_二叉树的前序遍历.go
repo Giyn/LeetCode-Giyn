@@ -12,12 +12,11 @@ package main
 
 import (
 	. "LeetCodeGiyn/utils/binary-tree"
-	"container/list"
 	"fmt"
 )
 
 func main() {
-	root := &TreeNode{1, nil, &TreeNode{2, &TreeNode{3, nil, nil}, nil}}
+	root := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 	fmt.Println(preorderTraversal(root))
 }
 
@@ -25,17 +24,17 @@ func preorderTraversal(root *TreeNode) (ans []int) {
 	if root == nil {
 		return
 	}
-	stack := list.New()
-	stack.PushBack(root)
+	stack := []*TreeNode{root}
 
-	for stack.Len() > 0 {
-		node := stack.Remove(stack.Back()).(*TreeNode)
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
 		ans = append(ans, node.Val)
 		if node.Right != nil {
-			stack.PushBack(node.Right)
+			stack = append(stack, node.Right)
 		}
 		if node.Left != nil {
-			stack.PushBack(node.Left)
+			stack = append(stack, node.Left)
 		}
 	}
 	return
