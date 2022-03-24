@@ -10,31 +10,22 @@
 
 package main
 
-import "fmt"
-
-type ListNode206 struct {
-	Val  int
-	Next *ListNode206
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	listNode5 := ListNode206{5, nil}
-	listNode4 := ListNode206{4, &listNode5}
-	listNode3 := ListNode206{3, &listNode4}
-	listNode2 := ListNode206{2, &listNode3}
-	listNode1 := ListNode206{1, &listNode2}
-
-	head := &listNode1
+	head := NewListNode([]int{1, 2, 3, 4, 5})
 	res := reverseList(head)
-
 	for res != nil {
 		fmt.Println(res.Val)
 		res = res.Next
 	}
 }
 
-func reverseList(head *ListNode206) *ListNode206 {
-	var pre *ListNode206
+func reverseList(head *ListNode) *ListNode {
+	var pre *ListNode
 	cur := head
 	for cur != nil {
 		tmp := cur.Next
