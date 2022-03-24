@@ -10,21 +10,13 @@
 
 package main
 
-import "fmt"
-
-type ListNode019 struct {
-	Val  int
-	Next *ListNode019
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	listNode5 := ListNode019{5, nil}
-	listNode4 := ListNode019{4, &listNode5}
-	listNode3 := ListNode019{3, &listNode4}
-	listNode2 := ListNode019{2, &listNode3}
-	listNode1 := ListNode019{1, &listNode2}
-
-	head := &listNode1
+	head := NewListNode([]int{1, 2, 3, 4, 5})
 	n := 2
 	res := removeNthFromEnd(head, n)
 	for res != nil {
@@ -33,8 +25,8 @@ func main() {
 	}
 }
 
-func removeNthFromEnd(head *ListNode019, n int) *ListNode019 {
-	fake := &ListNode019{-1, head}
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	fake := &ListNode{Val: -1, Next: head}
 	fast, slow := fake, fake
 	for n > 0 {
 		fast = fast.Next
