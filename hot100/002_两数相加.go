@@ -11,12 +11,13 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/linked-list"
 	"fmt"
 )
 
 func main() {
-	l1 := &ListNode002{2, &ListNode002{4, &ListNode002{3, nil}}}
-	l2 := &ListNode002{5, &ListNode002{6, &ListNode002{4, nil}}}
+	l1 := &ListNode{Val: 2, Next: &ListNode{Val: 4, Next: &ListNode{Val: 3}}}
+	l2 := &ListNode{Val: 5, Next: &ListNode{Val: 6, Next: &ListNode{Val: 4}}}
 	res := addTwoNumbers(l1, l2)
 	for res != nil {
 		fmt.Println(res.Val)
@@ -24,8 +25,8 @@ func main() {
 	}
 }
 
-func addTwoNumbers(l1 *ListNode002, l2 *ListNode002) (head *ListNode002) {
-	var tail *ListNode002
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
+	var tail *ListNode
 	carry := 0
 	for l1 != nil || l2 != nil {
 		sum := 0
@@ -40,20 +41,15 @@ func addTwoNumbers(l1 *ListNode002, l2 *ListNode002) (head *ListNode002) {
 		sum += carry
 		sum, carry = sum%10, sum/10
 		if head == nil {
-			head = &ListNode002{sum, nil}
+			head = &ListNode{Val: sum}
 			tail = head
 		} else {
-			tail.Next = &ListNode002{sum, nil}
+			tail.Next = &ListNode{Val: sum}
 			tail = tail.Next
 		}
 	}
 	if carry > 0 {
-		tail.Next = &ListNode002{carry, nil}
+		tail.Next = &ListNode{Val: carry}
 	}
 	return
-}
-
-type ListNode002 struct {
-	Val  int
-	Next *ListNode002
 }
