@@ -10,18 +10,16 @@
 
 package main
 
-import "fmt"
-
-type ListNode237 struct {
-	Val  int
-	Next *ListNode237
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	listNode4 := ListNode237{9, nil}
-	listNode3 := ListNode237{1, &listNode4}
-	listNode2 := ListNode237{5, &listNode3}
-	listNode1 := ListNode237{4, &listNode2}
+	listNode4 := ListNode{Val: 9}
+	listNode3 := ListNode{Val: 1, Next: &listNode4}
+	listNode2 := ListNode{Val: 5, Next: &listNode3}
+	listNode1 := ListNode{Val: 4, Next: &listNode2}
 
 	head := &listNode1
 	deleteNode(&listNode2)
@@ -32,7 +30,7 @@ func main() {
 	}
 }
 
-func deleteNode(node *ListNode237) {
+func deleteNode(node *ListNode) {
 	node.Val = node.Next.Val
 	node.Next = node.Next.Next
 }
