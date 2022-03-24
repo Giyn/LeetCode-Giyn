@@ -10,21 +10,19 @@
 
 package main
 
-import "fmt"
-
-type ListNode0207 struct {
-	Val  int
-	Next *ListNode0207
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	same := &ListNode0207{8, &ListNode0207{4, &ListNode0207{5, nil}}}
-	headA := &ListNode0207{4, &ListNode0207{1, same}}
-	headB := &ListNode0207{5, &ListNode0207{0, &ListNode0207{1, same}}}
+	same := &ListNode{Val: 8, Next: &ListNode{Val: 4, Next: &ListNode{Val: 5}}}
+	headA := &ListNode{Val: 4, Next: &ListNode{Val: 1, Next: same}}
+	headB := &ListNode{Val: 5, Next: &ListNode{Next: &ListNode{Val: 1, Next: same}}}
 	fmt.Println(getIntersectionNode(headA, headB).Val)
 }
 
-func getIntersectionNode(headA, headB *ListNode0207) *ListNode0207 {
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	if headA == nil || headB == nil {
 		return nil
 	}
