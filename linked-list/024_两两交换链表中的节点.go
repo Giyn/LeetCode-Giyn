@@ -10,20 +10,13 @@
 
 package main
 
-import "fmt"
-
-type ListNode024 struct {
-	Val  int
-	Next *ListNode024
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	listNode4 := ListNode024{4, nil}
-	listNode3 := ListNode024{3, &listNode4}
-	listNode2 := ListNode024{2, &listNode3}
-	listNode1 := ListNode024{1, &listNode2}
-
-	head := &listNode1
+	head := NewListNode([]int{1, 2, 3, 4})
 	res := swapPairs(head)
 	for res != nil {
 		fmt.Println(res.Val)
@@ -31,8 +24,8 @@ func main() {
 	}
 }
 
-func swapPairs(head *ListNode024) *ListNode024 {
-	fake := &ListNode024{-1, head}
+func swapPairs(head *ListNode) *ListNode {
+	fake := &ListNode{Val: -1, Next: head}
 	cur := fake
 	for cur.Next != nil && cur.Next.Next != nil {
 		tmpLeft := cur.Next
