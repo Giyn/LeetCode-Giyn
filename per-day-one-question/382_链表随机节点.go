@@ -11,12 +11,13 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/linked-list"
 	"fmt"
 	"math/rand"
 )
 
 func main() {
-	head := &ListNode382{1, &ListNode382{2, &ListNode382{3, nil}}}
+	head := &ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3}}}
 	obj := Constructor382(head)
 	fmt.Println(obj.GetRandom())
 	fmt.Println(obj.GetRandom())
@@ -25,17 +26,12 @@ func main() {
 	fmt.Println(obj.GetRandom())
 }
 
-type ListNode382 struct {
-	Val  int
-	Next *ListNode382
-}
-
 type Solution struct {
-	listNode *ListNode382
+	listNode *ListNode
 	//length   int
 }
 
-func Constructor382(head *ListNode382) Solution {
+func Constructor382(head *ListNode) Solution {
 	//count := 0
 	//tmp := head
 	//for tmp != nil {
