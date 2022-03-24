@@ -10,19 +10,17 @@
 
 package main
 
-import "fmt"
-
-type ListNode142 struct {
-	Val  int
-	Next *ListNode142
-}
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
 
 func main() {
-	listNode2 := ListNode142{2, nil}
-	listNode4 := ListNode142{-4, &listNode2}
-	listNode3 := ListNode142{0, &listNode4}
+	listNode2 := ListNode{Val: 2}
+	listNode4 := ListNode{Val: -4, Next: &listNode2}
+	listNode3 := ListNode{Next: &listNode4}
 	listNode2.Next = &listNode3
-	listNode1 := ListNode142{3, &listNode2}
+	listNode1 := ListNode{Val: 3, Next: &listNode2}
 	head := &listNode1
 	res := detectCycle(head)
 	cnt := 0
@@ -33,7 +31,7 @@ func main() {
 	fmt.Println(cnt)
 }
 
-func detectCycle(head *ListNode142) *ListNode142 {
+func detectCycle(head *ListNode) *ListNode {
 	slow, fast := head, head
 	for fast != nil && fast.Next != nil {
 		slow = slow.Next
