@@ -12,11 +12,10 @@ package main
 
 import (
 	. "LeetCodeGiyn/utils/binary-tree"
-	"container/list"
 )
 
 func main() {
-	root := &TreeNode{4, &TreeNode{2, &TreeNode{1, nil, nil}, &TreeNode{3, nil, nil}}, &TreeNode{7, &TreeNode{6, nil, nil}, &TreeNode{9, nil, nil}}}
+	root := &TreeNode{Val: 4, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}, Right: &TreeNode{Val: 7, Left: &TreeNode{Val: 6}, Right: &TreeNode{Val: 9}}}
 	invertTree(root)
 }
 
@@ -25,18 +24,18 @@ func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return root
 	}
-	queue := list.New()
-	queue.PushBack(root)
-	for queue.Len() > 0 {
-		length := queue.Len()
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		length := len(queue)
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode)
+			node := queue[0]
+			queue = queue[1:]
 			node.Left, node.Right = node.Right, node.Left
 			if node.Left != nil {
-				queue.PushBack(node.Left)
+				queue = append(queue, node.Left)
 			}
 			if node.Right != nil {
-				queue.PushBack(node.Right)
+				queue = append(queue, node.Right)
 			}
 		}
 	}
@@ -46,16 +45,16 @@ func invertTree(root *TreeNode) *TreeNode {
 	//if root == nil {
 	//	return root
 	//}
-	//stack := list.New()
-	//stack.PushBack(root)
-	//for stack.Len() > 0 {
-	//	node := stack.Remove(stack.Back()).(*TreeNode)
+	//stack := []*TreeNode{root}
+	//for len(stack) > 0 {
+	//	node := stack[len(stack)-1]
+	//	stack = stack[:len(stack)-1]
 	//	node.Left, node.Right = node.Right, node.Left
 	//	if node.Left != nil {
-	//		stack.PushBack(node.Left)
+	//		stack = append(stack, node.Left)
 	//	}
 	//	if node.Right != nil {
-	//		stack.PushBack(node.Right)
+	//		stack = append(stack, node.Right)
 	//	}
 	//}
 	//return root
@@ -66,10 +65,10 @@ func invertTree(root *TreeNode) *TreeNode {
 	//}
 	//root.Left, root.Right = root.Right, root.Left
 	//if root.Left != nil {
-	//	invertTree(root.Left)
+	//	mirrorTree(root.Left)
 	//}
 	//if root.Right != nil {
-	//	invertTree(root.Right)
+	//	mirrorTree(root.Right)
 	//}
 	//return root
 }
