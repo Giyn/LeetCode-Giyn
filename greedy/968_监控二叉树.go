@@ -10,23 +10,20 @@
 
 package main
 
-import "fmt"
-
-type TreeNode968 struct {
-	Val   int
-	Left  *TreeNode968
-	Right *TreeNode968
-}
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode968{0, &TreeNode968{0, &TreeNode968{0, nil, nil}, &TreeNode968{0, nil, nil}}, nil}
+	root := &TreeNode{Left: &TreeNode{Left: &TreeNode{}, Right: &TreeNode{}}}
 	fmt.Println(minCameraCover(root))
 }
 
-func minCameraCover(root *TreeNode968) (ans int) {
+func minCameraCover(root *TreeNode) (ans int) {
 	// 0: 无覆盖, 1: 有摄像头, 2: 有覆盖
-	var traversal func(cur *TreeNode968) int
-	traversal = func(cur *TreeNode968) int {
+	var traversal func(cur *TreeNode) int
+	traversal = func(cur *TreeNode) int {
 		if cur == nil {
 			return 2
 		}
