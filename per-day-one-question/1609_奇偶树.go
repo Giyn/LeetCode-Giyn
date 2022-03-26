@@ -11,24 +11,19 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/binary-tree"
 	"container/list"
 	"fmt"
 	"math"
 )
 
-type TreeNode1609 struct {
-	Val   int
-	Left  *TreeNode1609
-	Right *TreeNode1609
-}
-
 func main() {
-	//root := &TreeNode1609{1, &TreeNode1609{10, &TreeNode1609{3, &TreeNode1609{12, nil, nil}, &TreeNode1609{8, nil, nil}}, nil}, &TreeNode1609{4, &TreeNode1609{7, &TreeNode1609{6, nil, nil}, nil}, &TreeNode1609{9, nil, &TreeNode1609{2, nil, nil}}}}
-	root := &TreeNode1609{5, &TreeNode1609{4, &TreeNode1609{3, nil, nil}, &TreeNode1609{3, nil, nil}}, &TreeNode1609{2, &TreeNode1609{7, nil, nil}, nil}}
+	//root := &TreeNode{1, &TreeNode{10, &TreeNode{3, &TreeNode{12, nil, nil}, &TreeNode{8, nil, nil}}, nil}, &TreeNode{4, &TreeNode{7, &TreeNode{6, nil, nil}, nil}, &TreeNode{9, nil, &TreeNode{2, nil, nil}}}}
+	root := &TreeNode{Val: 5, Left: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 3}}, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 7}}}
 	fmt.Println(isEvenOddTree(root))
 }
 
-func isEvenOddTree(root *TreeNode1609) bool {
+func isEvenOddTree(root *TreeNode) bool {
 	queue := list.New()
 	queue.PushBack(root)
 	var even = true
@@ -41,7 +36,7 @@ func isEvenOddTree(root *TreeNode1609) bool {
 			prev = math.MaxInt64
 		}
 		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode1609)
+			node := queue.Remove(queue.Front()).(*TreeNode)
 			if node.Left != nil {
 				queue.PushBack(node.Left)
 			}
