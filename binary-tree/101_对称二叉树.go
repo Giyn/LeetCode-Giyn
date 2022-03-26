@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	root := &TreeNode{1, &TreeNode{2, &TreeNode{3, nil, nil}, &TreeNode{4, nil, nil}}, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{3, nil, nil}}}
+	root := &TreeNode{Val: 1, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 4}}, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 3}}}
 	fmt.Println(isSymmetric(root))
 }
 
@@ -42,22 +42,24 @@ func isSymmetric(root *TreeNode) bool {
 	return compare(root.Left, root.Right)
 
 	// 迭代
-	//queue := list.New()
-	//queue.PushBack(root.Left)
-	//queue.PushBack(root.Right)
-	//for queue.Len() > 0 {
-	//	left := queue.Remove(queue.Front()).(*TreeNode)
-	//	right := queue.Remove(queue.Front()).(*TreeNode)
+	//var queue []*TreeNode
+	//queue = append(queue, root.Left)
+	//queue = append(queue, root.Right)
+	//for len(queue) > 0 {
+	//	left := queue[0]
+	//	queue = queue[1:]
+	//	right := queue[0]
+	//	queue = queue[1:]
 	//	if left == nil && right == nil {
 	//		continue
 	//	}
 	//	if left == nil || right == nil || left.Val != right.Val {
 	//		return false
 	//	}
-	//	queue.PushBack(left.Left)
-	//	queue.PushBack(right.Right)
-	//	queue.PushBack(left.Right)
-	//	queue.PushBack(right.Left)
+	//	queue = append(queue, left.Left)
+	//	queue = append(queue, right.Right)
+	//	queue = append(queue, left.Right)
+	//	queue = append(queue, right.Left)
 	//}
 	//return true
 }
