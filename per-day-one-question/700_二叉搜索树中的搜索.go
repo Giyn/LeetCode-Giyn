@@ -10,15 +10,18 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/binary-tree"
+	"fmt"
+)
 
 func main() {
-	root := &TreeNode700{4, &TreeNode700{2, &TreeNode700{1, nil, nil}, &TreeNode700{3, nil, nil}}, &TreeNode700{7, nil, nil}}
+	root := &TreeNode{Val: 4, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}, Right: &TreeNode{Val: 7}}
 	res := searchBST(root, 2)
 	fmt.Println(res.Val)
 }
 
-func searchBST(root *TreeNode700, val int) *TreeNode700 {
+func searchBST(root *TreeNode, val int) *TreeNode {
 	// 迭代
 	for root != nil {
 		if root.Val == val {
@@ -42,10 +45,4 @@ func searchBST(root *TreeNode700, val int) *TreeNode700 {
 	//} else {
 	//	return searchBST(root.Right, val)
 	//}
-}
-
-type TreeNode700 struct {
-	Val   int
-	Left  *TreeNode700
-	Right *TreeNode700
 }
