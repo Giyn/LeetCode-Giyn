@@ -10,7 +10,10 @@
 
 package main
 
-import "fmt"
+import (
+	. "LeetCodeGiyn/utils/math"
+	"fmt"
+)
 
 func main() {
 	n := 10
@@ -18,22 +21,11 @@ func main() {
 }
 
 func integerBreak(n int) int {
-	var max func(int, int, int) int
-	max = func(x, y, z int) int {
-		maxValue := x
-		if y > maxValue {
-			maxValue = y
-		}
-		if z > maxValue {
-			maxValue = z
-		}
-		return maxValue
-	}
 	dp := make([]int, n+1)
 	dp[2] = 1
 	for i := 3; i <= n; i++ {
 		for j := 1; j < i-1; j++ {
-			dp[i] = max(dp[i], j*(i-j), j*dp[i-j])
+			dp[i] = Max(dp[i], (i-j)*j, dp[i-j]*j)
 		}
 	}
 	return dp[n]
