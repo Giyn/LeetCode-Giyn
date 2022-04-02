@@ -93,5 +93,5 @@ func (this *LRUCache) moveToHead(node *DLinkedNode) {
 func (this *LRUCache) removeTail() (node *DLinkedNode) {
 	node = this.tail.prev
 	this.removeNode(node)
-	return node
+	return
 }
