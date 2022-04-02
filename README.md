@@ -163,22 +163,25 @@ func postorderTraversal(root *TreeNode) (ans []int) {
 
 二维 DP 数组：
 
-```c++
+```go
 // weight数组的大小 就是物品个数
-for(int i = 1; i < weight.size(); i++) { // 遍历物品
-    for(int j = 0; j <= bagweight; j++) { // 遍历背包容量
-        if (j < weight[i]) dp[i][j] = dp[i - 1][j]; 
-        else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
+for i := 1; i < len(weight); i++ { // 遍历物品
+    for j := 0; j <= bagweight; j++ { // 遍历背包容量
+        if j < weight[i] {
+            dp[i][j] = dp[i - 1][j]
+        } else {
+            dp[i][j] = Max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i])
+        }
     }
 }
 ```
 
 一维 DP 数组：
 
-```c++
-for(int i = 0; i < weight.size(); i++) { // 遍历物品
-    for(int j = bagWeight; j >= weight[i]; j--) { // 遍历背包容量
-        dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+```go
+for i := 0; i < len(weight); i++ { // 遍历物品
+    for j := bagWeight; j >= weight[i]; j-- { // 遍历背包容量
+        dp[j] = Max(dp[j], dp[j - weight[i]] + value[i])
     }
 }
 ```
@@ -191,10 +194,10 @@ dp[j] += dp[j - nums[i]]
 
 ### 完全背包问题
 
-```c++
-for(int i = 0; i < weight.size(); i++) { // 遍历物品
-    for(int j = weight[i]; j < bagWeight; j++) { // 遍历背包容量
-        dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+```go
+for i := 0; i < len(weight); i++ { // 遍历物品
+    for j := weight[i]; j < bagWeight; j++ { // 遍历背包容量
+        dp[j] = Max(dp[j], dp[j - weight[i]] + value[i])
     }
 }
 ```
