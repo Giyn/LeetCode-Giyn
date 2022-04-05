@@ -15,12 +15,11 @@ func MergeSort(nums []int) []int {
 		return nums
 	}
 	mid := len(nums) / 2
-	left, right := nums[:mid], nums[mid:]
-	return Merge(MergeSort(left), MergeSort(right))
+	return Merge(MergeSort(nums[:mid]), MergeSort(nums[mid:]))
 }
 
 func Merge(left, right []int) (ans []int) {
-	for len(left) != 0 && len(right) != 0 {
+	for len(left) > 0 && len(right) > 0 {
 		if left[0] <= right[0] {
 			ans = append(ans, left[0])
 			left = left[1:]
@@ -29,11 +28,11 @@ func Merge(left, right []int) (ans []int) {
 			right = right[1:]
 		}
 	}
-	for len(left) != 0 {
+	for len(left) > 0 {
 		ans = append(ans, left[0])
 		left = left[1:]
 	}
-	for len(right) != 0 {
+	for len(right) > 0 {
 		ans = append(ans, right[0])
 		right = right[1:]
 	}
