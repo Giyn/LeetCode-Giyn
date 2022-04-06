@@ -32,10 +32,10 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		return lists[0]
 	}
 	mid := len(lists) >> 1
-	return merge(mergeKLists(lists[:mid]), mergeKLists(lists[mid:]))
+	return merge2Lists(mergeKLists(lists[:mid]), mergeKLists(lists[mid:]))
 }
 
-func merge(l1, l2 *ListNode) *ListNode {
+func merge2Lists(l1, l2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	cur := dummy
 	for l1 != nil && l2 != nil {
