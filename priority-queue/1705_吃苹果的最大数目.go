@@ -36,7 +36,7 @@ func eatenApples(apples []int, days []int) (ans int) {
 			heap.Pop(&hp)
 		}
 		if apples[i] > 0 {
-			heap.Push(&hp, pair1705{i + days[i], apples[i]})
+			heap.Push(&hp, struct{ end, left int }{i + days[i], apples[i]})
 		}
 		if hp.Len() > 0 {
 			hp[0].left--
@@ -53,7 +53,7 @@ func eatenApples(apples []int, days []int) (ans int) {
 		if hp.Len() == 0 {
 			break
 		}
-		tmp := heap.Pop(&hp).(pair1705)
+		tmp := heap.Pop(&hp).(struct{ end, left int })
 		nums := min(tmp.end-i, tmp.left)
 		ans += nums
 		i += nums
@@ -61,11 +61,9 @@ func eatenApples(apples []int, days []int) (ans int) {
 	return
 }
 
-type pair1705 struct {
+type appleHeap []struct {
 	end, left int
 }
-
-type appleHeap []pair1705
 
 func (h appleHeap) Len() int {
 	return len(h)
@@ -80,7 +78,7 @@ func (h appleHeap) Swap(i, j int) {
 }
 
 func (h *appleHeap) Push(x interface{}) {
-	*h = append(*h, x.(pair1705))
+	*h = append(*h, x.(struct{ end, left int }))
 }
 
 func (h *appleHeap) Pop() interface{} {
