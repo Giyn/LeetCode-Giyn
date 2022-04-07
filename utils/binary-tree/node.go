@@ -18,12 +18,39 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+type Node struct {
+	Val   int
+	Left  *Node
+	Right *Node
+}
+
 func NewTreeNode(vals []int) (root *TreeNode) {
 	tree := make([]*TreeNode, len(vals))
 	for i := 0; i < len(vals); i++ {
 		var node *TreeNode
 		if vals[i] != -1 {
 			node = &TreeNode{vals[i], nil, nil}
+		}
+		tree[i] = node
+		if i == 0 {
+			root = node
+		}
+	}
+	for i := 0; i*2+2 < len(vals); i++ {
+		if tree[i] != nil {
+			tree[i].Left = tree[i*2+1]
+			tree[i].Right = tree[i*2+2]
+		}
+	}
+	return
+}
+
+func NewNode(vals []int) (root *Node) {
+	tree := make([]*Node, len(vals))
+	for i := 0; i < len(vals); i++ {
+		var node *Node
+		if vals[i] != -1 {
+			node = &Node{vals[i], nil, nil}
 		}
 		tree[i] = node
 		if i == 0 {
