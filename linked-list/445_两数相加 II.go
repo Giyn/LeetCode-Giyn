@@ -18,14 +18,14 @@ import (
 func main() {
 	l1 := NewListNode([]int{6, 4, 5, 0, 4, 4, 9, 4, 1})
 	l2 := NewListNode([]int{3, 8, 8, 0, 3, 0, 1, 4, 8})
-	ans := addTwoNumbers(l1, l2)
+	ans := addTwoNumbers2(l1, l2)
 	for ans != nil {
 		fmt.Println(ans.Val)
 		ans = ans.Next
 	}
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 	var stack1 []int
 	var stack2 []int
 	for l1 != nil {
