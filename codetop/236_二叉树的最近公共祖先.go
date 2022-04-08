@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	root := &TreeNode{Val: 3, Left: &TreeNode{Val: 5, Left: &TreeNode{Val: 6}, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 4}}}, Right: &TreeNode{Val: 1, Left: &TreeNode{}, Right: &TreeNode{Val: 8}}}
+	root := NewTreeNode([]int{3, 5, 1, 6, 2, 0, 8, -1, -1, 7, 4})
 	p := root.Left
 	q := root.Right
 	res := lowestCommonAncestor(root, p, q)
@@ -29,7 +29,6 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	}
 	left := lowestCommonAncestor(root.Left, p, q)
 	right := lowestCommonAncestor(root.Right, p, q)
-	// 左右两边都不为空，则根节点为祖先
 	if left != nil && right != nil {
 		return root
 	}
