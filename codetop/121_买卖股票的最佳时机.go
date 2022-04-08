@@ -1,6 +1,6 @@
 /*
 -------------------------------------
-# @Time    : 2021/12/13 20:01:14
+# @Time    : 2022/4/8 21:37:52
 # @Author  : Giyn
 # @Email   : giyn.jy@gmail.com
 # @File    : 121_买卖股票的最佳时机.go
@@ -11,6 +11,7 @@
 package main
 
 import (
+	. "LeetCodeGiyn/utils/math"
 	"fmt"
 	"math"
 )
@@ -21,13 +22,12 @@ func main() {
 }
 
 func maxProfit1(prices []int) (ans int) {
-	minPrice := math.MaxInt64
-	for i := 0; i < len(prices); i++ {
-		if prices[i] < minPrice {
-			minPrice = prices[i]
-		} else if prices[i]-minPrice > ans {
-			ans = prices[i] - minPrice
+	min := math.MaxInt64
+	for _, price := range prices {
+		if price < min {
+			min = price
 		}
+		ans = Max(ans, price-min)
 	}
 	return
 }
