@@ -508,34 +508,32 @@ func Merge(left, right []int) (ans []int) {
 
 ```go
 func HeapSort(nums []int) {
-	length := len(nums)
-	for i := 0; i < length; i++ {
-		lastLen := length - i
-		Heapify(nums, lastLen)
-		if i < length {
-			nums[0], nums[lastLen-1] = nums[lastLen-1], nums[0]
-		}
+	n := len(nums)
+	// 建堆
+	for i := n/2 - 1; i >= 0; i-- {
+		Heapify(nums, i, n)
+	}
+	// 堆顶交换到尾部
+	for i := n - 1; i > 0; i-- {
+		nums[0], nums[i] = nums[i], nums[0]
+		Heapify(nums, 0, i) // 继续调整
 	}
 }
 
-func Heapify(nums []int, length int) {
-	if length <= 1 {
-		return
+func Heapify(nums []int, i, n int) {
+	max := i
+	left := i<<1 + 1
+	right := i<<1 + 2
+	if left < n && nums[left] > nums[max] {
+		max = left
 	}
-	depth := length/2 - 1 // 二叉树深度
-	for i := depth; i >= 0; i-- {
-		top := i
-		left := 2*i + 1
-		right := 2*i + 2
-		if left <= length-1 && nums[left] > nums[top] {
-			top = left
-		}
-		if right <= length-1 && nums[right] > nums[top] {
-			top = right
-		}
-		if top != i {
-			nums[i], nums[top] = nums[top], nums[i]
-		}
+	if right < n && nums[right] > nums[max] {
+		max = right
+	}
+	// 把父节点换下去调整
+	if max != i {
+		nums[max], nums[i] = nums[i], nums[max]
+		Heapify(nums, max, n)
 	}
 }
 ```
