@@ -1,0 +1,41 @@
+/*
+-------------------------------------
+# @Time    : 2022/3/10 15:44:40
+# @Author  : Giyn
+# @Email   : giyn.jy@gmail.com
+# @File    : 160_相交链表.go
+# @Software: GoLand
+-------------------------------------
+*/
+
+package main
+
+import (
+	. "LeetCodeGiyn/utils/linked-list"
+	"fmt"
+)
+
+func main() {
+	public := NewListNode([]int{8, 4, 5})
+	headA := NewListNode([]int{4, 1})
+	headB := NewListNode([]int{5, 6, 1})
+	headA.Next, headB.Next = public, public
+	fmt.Println(getIntersectionNode(headA, headB).Val)
+}
+
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	curA, curB := headA, headB
+	for curA != curB {
+		if curA == nil {
+			curA = headB
+		} else {
+			curA = curA.Next
+		}
+		if curB == nil {
+			curB = headA
+		} else {
+			curB = curB.Next
+		}
+	}
+	return curA
+}
