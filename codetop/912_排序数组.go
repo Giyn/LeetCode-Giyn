@@ -42,32 +42,62 @@ func sortArray(nums []int) []int {
 	//		quickSort(s, i, right)
 	//	}
 	//}
-	var mergeSort func(left, right []int) (ans []int)
-	mergeSort = func(left, right []int) (ans []int) {
-		for len(left) > 0 && len(right) > 0 {
-			if left[0] <= right[0] {
-				ans = append(ans, left[0])
-				left = left[1:]
-			} else {
-				ans = append(ans, right[0])
-				right = right[1:]
-			}
-		}
-		for len(left) > 0 {
-			ans = append(ans, left[0])
-			left = left[1:]
-		}
-		for len(right) > 0 {
-			ans = append(ans, right[0])
-			right = right[1:]
-		}
-		return
-	}
 	//quickSort(nums, 0, len(nums)-1)
-	if len(nums) < 2 {
-		return nums
-	}
-	mid := len(nums) / 2
 	//return nums
-	return mergeSort(sortArray(nums[:mid]), sortArray(nums[mid:]))
+
+	//var mergeSort func(left, right []int) (ans []int)
+	//mergeSort = func(left, right []int) (ans []int) {
+	//	for len(left) > 0 && len(right) > 0 {
+	//		if left[0] <= right[0] {
+	//			ans = append(ans, left[0])
+	//			left = left[1:]
+	//		} else {
+	//			ans = append(ans, right[0])
+	//			right = right[1:]
+	//		}
+	//	}
+	//	for len(left) > 0 {
+	//		ans = append(ans, left[0])
+	//		left = left[1:]
+	//	}
+	//	for len(right) > 0 {
+	//		ans = append(ans, right[0])
+	//		right = right[1:]
+	//	}
+	//	return
+	//}
+	//if len(nums) < 2 {
+	//	return nums
+	//}
+	//mid := len(nums) / 2
+	//return mergeSort(sortArray(nums[:mid]), sortArray(nums[mid:]))
+
+	var heapify func(i, n int)
+	heapify = func(i, n int) {
+		max := i
+		left := i<<1 + 1
+		right := i<<1 + 2
+		if left < n && nums[left] > nums[max] {
+			max = left
+		}
+		if right < n && nums[right] > nums[max] {
+			max = right
+		}
+		// 把父节点换下去调整
+		if max != i {
+			nums[max], nums[i] = nums[i], nums[max]
+			heapify(max, n)
+		}
+	}
+	n := len(nums)
+	// 建堆
+	for i := n/2 - 1; i >= 0; i-- {
+		heapify(i, n)
+	}
+	// 堆顶交换到尾部
+	for i := n - 1; i > 0; i-- {
+		nums[0], nums[i] = nums[i], nums[0]
+		heapify(0, i) // 继续调整
+	}
+	return nums
 }
