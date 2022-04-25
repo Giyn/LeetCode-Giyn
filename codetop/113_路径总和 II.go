@@ -1,6 +1,6 @@
 /*
 -------------------------------------
-# @Time    : 2021/11/21 22:10:04
+# @Time    : 2022/4/25 12:10:58
 # @Author  : Giyn
 # @Email   : giyn.jy@gmail.com
 # @File    : 113_路径总和 II.go
@@ -23,13 +23,13 @@ func main() {
 
 func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 	var path []int
-	var dfs func(*TreeNode, int)
+	var dfs func(node *TreeNode, remain int)
 	dfs = func(node *TreeNode, remain int) {
 		if node == nil {
 			return
 		}
-		remain -= node.Val
 		path = append(path, node.Val)
+		remain -= node.Val
 		defer func() { path = path[:len(path)-1] }()
 		if node.Left == nil && node.Right == nil && remain == 0 {
 			ans = append(ans, append([]int{}, path...))
