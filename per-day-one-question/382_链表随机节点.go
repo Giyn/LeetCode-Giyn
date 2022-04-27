@@ -26,32 +26,15 @@ func main() {
 	fmt.Println(obj.GetRandom())
 }
 
-type Solution struct {
+type Solution382 struct {
 	listNode *ListNode
-	//length   int
 }
 
-func Constructor382(head *ListNode) Solution {
-	//count := 0
-	//tmp := head
-	//for tmp != nil {
-	//	count++
-	//	tmp = tmp.Next
-	//}
-	//return Solution{head, count}
-
-	return Solution{head}
+func Constructor382(head *ListNode) Solution382 {
+	return Solution382{head}
 }
 
-func (this *Solution) GetRandom() (ans int) {
-	//index := rand.Intn(this.length)
-	//tmp := this.listNode
-	//for index > 0 {
-	//	tmp = tmp.Next
-	//	index--
-	//}
-	//return tmp.Val
-
+func (this *Solution382) GetRandom() (ans int) {
 	for node, index := this.listNode, 1; node != nil; node, index = node.Next, index+1 {
 		if rand.Intn(index) == 0 {
 			ans = node.Val
@@ -59,9 +42,3 @@ func (this *Solution) GetRandom() (ans int) {
 	}
 	return
 }
-
-/**
- * Your Solution object will be instantiated and called as such:
- * obj := Constructor(head);
- * param_1 := obj.GetRandom();
- */
