@@ -1,6 +1,6 @@
 /*
 -------------------------------------
-# @Time    : 2021/11/15 15:10:09
+# @Time    : 2022/4/26 0:03:50
 # @Author  : Giyn
 # @Email   : giyn.jy@gmail.com
 # @File    : 199_二叉树的右视图.go
@@ -12,7 +12,6 @@ package main
 
 import (
 	. "LeetCodeGiyn/utils/binary-tree"
-	"container/list"
 	"fmt"
 )
 
@@ -22,25 +21,17 @@ func main() {
 }
 
 func rightSideView(root *TreeNode) (ans []int) {
-	if root == nil {
-		return
-	}
-	queue := list.New()
-	queue.PushBack(root)
-	for queue.Len() > 0 {
-		var tmp []int
-		length := queue.Len()
-		for i := 0; i < length; i++ {
-			node := queue.Remove(queue.Front()).(*TreeNode)
-			if node.Left != nil {
-				queue.PushBack(node.Left)
-			}
-			if node.Right != nil {
-				queue.PushBack(node.Right)
-			}
-			tmp = append(tmp, node.Val)
+	var dfs func(node *TreeNode, level int)
+	dfs = func(node *TreeNode, level int) {
+		if node == nil {
+			return
 		}
-		ans = append(ans, tmp[len(tmp)-1])
+		if level > len(ans) {
+			ans = append(ans, node.Val)
+		}
+		dfs(node.Right, level+1)
+		dfs(node.Left, level+1)
 	}
+	dfs(root, 1)
 	return
 }
