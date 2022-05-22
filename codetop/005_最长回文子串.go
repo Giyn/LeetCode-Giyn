@@ -21,15 +21,22 @@ func main() {
 
 func longestPalindrome(s string) (ans string) {
 	n := len(s)
-	for center := 0; center < 2*n-1; center++ {
-		left := center / 2
-		right := left + center%2
-		for left >= 0 && right < n && s[left] == s[right] {
-			if right-left+1 > len(ans) {
-				ans = s[left : right+1]
-			}
-			left--
-			right++
+	for i := 0; i < len(s); i++ {
+		l, r := i, i
+		for l >= 0 && r < n && s[l] == s[r] {
+			l--
+			r++
+		}
+		if r-l-1 > len(ans) {
+			ans = s[l+1 : r]
+		}
+		l, r = i, i+1
+		for l >= 0 && r < n && s[l] == s[r] {
+			l--
+			r++
+		}
+		if r-l-1 > len(ans) {
+			ans = s[l+1 : r]
 		}
 	}
 	return
