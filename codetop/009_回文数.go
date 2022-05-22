@@ -14,10 +14,10 @@ import "fmt"
 
 func main() {
 	x := 1234321
-	fmt.Println(isPalindrome(x))
+	fmt.Println(isPalindromeNum(x))
 }
 
-func isPalindrome(x int) bool {
+func isPalindromeNum(x int) bool {
 	// 没有前导0
 	if (x < 0) || (x != 0 && x%10 == 0) {
 		return false
