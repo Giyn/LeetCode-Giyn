@@ -12,15 +12,15 @@ package main
 
 import "fmt"
 
-type Node struct {
+type NodeRandom struct {
 	Val          int
-	Next, Random *Node
+	Next, Random *NodeRandom
 }
 
 func main() {
-	node := &Node{2, nil, nil}
+	node := &NodeRandom{2, nil, nil}
 	node.Random = node
-	head := &Node{1, node, node}
+	head := &NodeRandom{1, node, node}
 	ans := copyRandomList(head)
 	for ans != nil {
 		fmt.Println(ans.Val)
@@ -33,12 +33,12 @@ func main() {
 	}
 }
 
-func copyRandomList(head *Node) (ans *Node) {
+func copyRandomList(head *NodeRandom) (ans *NodeRandom) {
 	if head == nil {
 		return head
 	}
 	for node := head; node.Next != nil; node = node.Next.Next {
-		node.Next = &Node{Val: node.Val, Next: node.Next}
+		node.Next = &NodeRandom{Val: node.Val, Next: node.Next}
 	}
 	for node := head; node.Next != nil; node = node.Next.Next {
 		if node.Random != nil {
