@@ -17,14 +17,14 @@ import (
 
 func main() {
 	head := NewListNode([]int{1, 2, 2, 3, 3, 4, 5})
-	ans := deleteDuplicates(head)
+	ans := deleteDuplicates2(head)
 	for ans != nil {
 		fmt.Println(ans.Val)
 		ans = ans.Next
 	}
 }
 
-func deleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates2(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}
