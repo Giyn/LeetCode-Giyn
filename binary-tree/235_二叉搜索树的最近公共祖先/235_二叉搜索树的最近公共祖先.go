@@ -19,11 +19,11 @@ func main() {
 	root := &TreeNode{Val: 6, Left: &TreeNode{Val: 2, Left: &TreeNode{}, Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 5}}}, Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 9}}}
 	p := root.Left
 	q := root.Right
-	res := lowestCommonAncestorBST(root, p, q)
+	res := lowestCommonAncestor(root, p, q)
 	fmt.Println(res.Val)
 }
 
-func lowestCommonAncestorBST(root, p, q *TreeNode) *TreeNode {
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	// 迭代
 	for root != nil {
 		if root.Val > p.Val && root.Val > q.Val {
@@ -41,13 +41,13 @@ func lowestCommonAncestorBST(root, p, q *TreeNode) *TreeNode {
 	//	return root
 	//}
 	//if root.Val > p.Val && root.Val > q.Val {
-	//	left := lowestCommonAncestorBST(root.Left, p, q)
+	//	left := lowestCommonAncestor(root.Left, p, q)
 	//	if left != nil {
 	//		return left
 	//	}
 	//}
 	//if root.Val < p.Val && root.Val < q.Val {
-	//	right := lowestCommonAncestorBST(root.Right, p, q)
+	//	right := lowestCommonAncestor(root.Right, p, q)
 	//	if right != nil {
 	//		return right
 	//	}
