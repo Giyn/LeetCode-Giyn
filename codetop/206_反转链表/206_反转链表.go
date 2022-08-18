@@ -30,4 +30,13 @@ func reverseList(head *ListNode) *ListNode {
 		cur = tmp
 	}
 	return pre
+
+	// 递归
+	//if head == nil || head.Next == nil {
+	//	return head
+	//}
+	//newHead := reverseList(head.Next)
+	//head.Next.Next = head
+	//head.Next = nil
+	//return newHead
 }
