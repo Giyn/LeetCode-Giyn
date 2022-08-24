@@ -13,15 +13,7 @@ package main
 import "fmt"
 
 func main() {
-	var grid [][]int
-
-	row1 := []int{1, 3, 1}
-	row2 := []int{1, 5, 1}
-	row3 := []int{4, 2, 1}
-	grid = append(grid, row1)
-	grid = append(grid, row2)
-	grid = append(grid, row3)
-
+	var grid = [][]int{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}
 	fmt.Println(minPathSum(grid))
 }
 
